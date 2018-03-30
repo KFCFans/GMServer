@@ -1,5 +1,7 @@
 package com.lip.controller;
 
+import com.lip.pojo.Userinfo;
+import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.UserInfoResult;
 import com.lip.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,14 @@ public class UserInfoController {
     public UserInfoService userInfoService;
 
     @ResponseBody
-    @RequestMapping("/getinfo")
+    @RequestMapping("/get")
     public UserInfoResult getUserInfo(String uid){
         return userInfoService.getUserInfo(uid);
+    }
+
+    @ResponseBody
+    @RequestMapping("/change")
+    public RequestResult changeUserInfo(Userinfo userinfo){
+        return userInfoService.changeUserInfo(userinfo);
     }
 }
