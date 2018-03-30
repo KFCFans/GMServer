@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lip.mapper.PlantindividualMapper" >
+  <resultMap id="BaseResultMap" type="com.lip.pojo.Plantindividual" >
+    <id column="iid" property="iid" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="istatus" property="istatus" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="iage" property="iage" jdbcType="INTEGER" />
+    <result column="ipic" property="ipic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    iid, aid, istatus, pid, iage, ipic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.PlantindividualExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from plantindividual
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plantindividual
+    where iid = #{iid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plantindividual
+    where iid = #{iid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lip.pojo.PlantindividualExample" >
+    delete from plantindividual
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lip.pojo.Plantindividual" >
+    insert into plantindividual (iid, aid, istatus, 
+      pid, iage, ipic)
+    values (#{iid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{istatus,jdbcType=INTEGER}, 
+      #{pid,jdbcType=INTEGER}, #{iage,jdbcType=INTEGER}, #{ipic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lip.pojo.Plantindividual" >
+    insert into plantindividual
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iid != null" >
+        iid,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="istatus != null" >
+        istatus,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="iage != null" >
+        iage,
+      </if>
+      <if test="ipic != null" >
+        ipic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iid != null" >
+        #{iid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="istatus != null" >
+        #{istatus,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="iage != null" >
+        #{iage,jdbcType=INTEGER},
+      </if>
+      <if test="ipic != null" >
+        #{ipic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lip.pojo.PlantindividualExample" resultType="java.lang.Integer" >
+    select count(*) from plantindividual
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update plantindividual
+    <set >
+      <if test="record.iid != null" >
+        iid = #{record.iid,jdbcType=INTEGER},
+      </if>
+      <if test="record.aid != null" >
+        aid = #{record.aid,jdbcType=INTEGER},
+      </if>
+      <if test="record.istatus != null" >
+        istatus = #{record.istatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.iage != null" >
+        iage = #{record.iage,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipic != null" >
+        ipic = #{record.ipic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update plantindividual
+    set iid = #{record.iid,jdbcType=INTEGER},
+      aid = #{record.aid,jdbcType=INTEGER},
+      istatus = #{record.istatus,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      iage = #{record.iage,jdbcType=INTEGER},
+      ipic = #{record.ipic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lip.pojo.Plantindividual" >
+    update plantindividual
+    <set >
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="istatus != null" >
+        istatus = #{istatus,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="iage != null" >
+        iage = #{iage,jdbcType=INTEGER},
+      </if>
+      <if test="ipic != null" >
+        ipic = #{ipic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where iid = #{iid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lip.pojo.Plantindividual" >
+    update plantindividual
+    set aid = #{aid,jdbcType=INTEGER},
+      istatus = #{istatus,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=INTEGER},
+      iage = #{iage,jdbcType=INTEGER},
+      ipic = #{ipic,jdbcType=VARCHAR}
+    where iid = #{iid,jdbcType=INTEGER}
+  </update>
+</mapper>

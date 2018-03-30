@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lip.mapper.TaskinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lip.pojo.Taskinfo" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="rtype" property="rtype" jdbcType="INTEGER" />
+    <result column="iid" property="iid" jdbcType="INTEGER" />
+    <result column="stime" property="stime" jdbcType="TIMESTAMP" />
+    <result column="etime" property="etime" jdbcType="TIMESTAMP" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="tstatus" property="tstatus" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="tpic" property="tpic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tid, aid, rtype, iid, stime, etime, pid, tstatus, tname, tpic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.TaskinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from taskinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from taskinfo
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from taskinfo
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lip.pojo.TaskinfoExample" >
+    delete from taskinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lip.pojo.Taskinfo" >
+    insert into taskinfo (tid, aid, rtype, 
+      iid, stime, etime, 
+      pid, tstatus, tname, 
+      tpic)
+    values (#{tid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{rtype,jdbcType=INTEGER}, 
+      #{iid,jdbcType=INTEGER}, #{stime,jdbcType=TIMESTAMP}, #{etime,jdbcType=TIMESTAMP}, 
+      #{pid,jdbcType=INTEGER}, #{tstatus,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, 
+      #{tpic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lip.pojo.Taskinfo" >
+    insert into taskinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="rtype != null" >
+        rtype,
+      </if>
+      <if test="iid != null" >
+        iid,
+      </if>
+      <if test="stime != null" >
+        stime,
+      </if>
+      <if test="etime != null" >
+        etime,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="tstatus != null" >
+        tstatus,
+      </if>
+      <if test="tname != null" >
+        tname,
+      </if>
+      <if test="tpic != null" >
+        tpic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="rtype != null" >
+        #{rtype,jdbcType=INTEGER},
+      </if>
+      <if test="iid != null" >
+        #{iid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null" >
+        #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null" >
+        #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="tstatus != null" >
+        #{tstatus,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tpic != null" >
+        #{tpic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lip.pojo.TaskinfoExample" resultType="java.lang.Integer" >
+    select count(*) from taskinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update taskinfo
+    <set >
+      <if test="record.tid != null" >
+        tid = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.aid != null" >
+        aid = #{record.aid,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtype != null" >
+        rtype = #{record.rtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.iid != null" >
+        iid = #{record.iid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stime != null" >
+        stime = #{record.stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.etime != null" >
+        etime = #{record.etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tstatus != null" >
+        tstatus = #{record.tstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.tname != null" >
+        tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tpic != null" >
+        tpic = #{record.tpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update taskinfo
+    set tid = #{record.tid,jdbcType=INTEGER},
+      aid = #{record.aid,jdbcType=INTEGER},
+      rtype = #{record.rtype,jdbcType=INTEGER},
+      iid = #{record.iid,jdbcType=INTEGER},
+      stime = #{record.stime,jdbcType=TIMESTAMP},
+      etime = #{record.etime,jdbcType=TIMESTAMP},
+      pid = #{record.pid,jdbcType=INTEGER},
+      tstatus = #{record.tstatus,jdbcType=INTEGER},
+      tname = #{record.tname,jdbcType=VARCHAR},
+      tpic = #{record.tpic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lip.pojo.Taskinfo" >
+    update taskinfo
+    <set >
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="rtype != null" >
+        rtype = #{rtype,jdbcType=INTEGER},
+      </if>
+      <if test="iid != null" >
+        iid = #{iid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null" >
+        stime = #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null" >
+        etime = #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="tstatus != null" >
+        tstatus = #{tstatus,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tpic != null" >
+        tpic = #{tpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lip.pojo.Taskinfo" >
+    update taskinfo
+    set aid = #{aid,jdbcType=INTEGER},
+      rtype = #{rtype,jdbcType=INTEGER},
+      iid = #{iid,jdbcType=INTEGER},
+      stime = #{stime,jdbcType=TIMESTAMP},
+      etime = #{etime,jdbcType=TIMESTAMP},
+      pid = #{pid,jdbcType=INTEGER},
+      tstatus = #{tstatus,jdbcType=INTEGER},
+      tname = #{tname,jdbcType=VARCHAR},
+      tpic = #{tpic,jdbcType=VARCHAR}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>
