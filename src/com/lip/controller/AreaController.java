@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/areainfo")
+@RequestMapping("/area")
 public class AreaController {
 
     @Autowired
     private AreaService areaService;
 
-    @RequestMapping("/show")
+    @RequestMapping("/list")
     @ResponseBody
     public AreaListResult getAreaListInfo() {
         return areaService.getAreaList();

@@ -11,6 +11,9 @@ public interface UserSecurityServie {
     // 登陆
     public RequestResult userLogin(String uid,String pwd);
 
+    // 使用Token登陆
+    public RequestResult tokenLogin(String token);
+
     // 修改密码
     public RequestResult changePassword(String uid,String oldpwd,String newpwd);
 

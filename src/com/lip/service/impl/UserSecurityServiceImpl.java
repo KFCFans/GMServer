@@ -39,11 +39,26 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
         }catch (Exception e) {
             return new RequestResult(500,"failed",e.getMessage());
         }
-        if(userinfo.getPassword()==pwd){
+        if(userinfo.getPassword().equals(pwd)){
             return new RequestResult(200,"OK",userinfo.getAccesstoken());
         }else{
             return new RequestResult(400,"failed","密码错误！");
         }
+    }
+
+    @Override
+    public RequestResult tokenLogin(String token) {
+        Userinfo userinfo=null;
+        UserinfoExample example=new UserinfoExample();
+        UserinfoExample.Criteria criteria=example.createCriteria();
+        criteria.andAccesstokenEqualTo(token);
+        try {
+            userinfo=userinfoMapper.selectByExample(example).get(0);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        if(userinfo==null) return new RequestResult(400,"failed","Token已失效！");
+        else return new RequestResult(200,"OK","登陆成功");
     }
 
     @Override
