@@ -48,16 +48,16 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
 
     @Override
     public RequestResult tokenLogin(String token) {
-        Userinfo userinfo=null;
+        List<Userinfo> list=null;
         UserinfoExample example=new UserinfoExample();
         UserinfoExample.Criteria criteria=example.createCriteria();
         criteria.andAccesstokenEqualTo(token);
         try {
-            userinfo=userinfoMapper.selectByExample(example).get(0);
+            list=userinfoMapper.selectByExample(example);
         }catch (Exception e){
             return new RequestResult(500,"failed",e.getMessage());
         }
-        if(userinfo==null) return new RequestResult(400,"failed","Token已失效！");
+        if(list.size()==0) return new RequestResult(400,"failed","Token已失效！");
         else return new RequestResult(200,"OK","登陆成功");
     }
 
@@ -70,7 +70,7 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
         }catch (Exception e) {
             return new RequestResult(500,"failed",e.getMessage()) ;
         }
-        if(userinfo.getPassword()!=oldpwd) return new RequestResult(400,"failed","密码错误！");
+        if(!userinfo.getPassword().equals(oldpwd)) return new RequestResult(400,"failed","密码错误！");
         userinfo.setPassword(newpwd);
         userinfo.setAccesstoken(token);
         try {
