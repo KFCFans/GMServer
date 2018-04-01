@@ -24,7 +24,6 @@ public class UserSecurityController {
     @RequestMapping("/tokenlogin")
     public RequestResult loginByToken(String token){
         return userSecurityServie.tokenLogin(token);
-
     }
 
 }
