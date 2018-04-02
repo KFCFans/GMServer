@@ -1,18 +1,28 @@
 package com.lip.pojo;
 
 public class Feedback {
-    private Long uid;
+    private Integer fid;
+
+    private String uid;
 
     private String feedbackinfo;
 
     private Integer fstatus;
 
-    public Long getUid() {
+    public Integer getFid() {
+        return fid;
+    }
+
+    public void setFid(Integer fid) {
+        this.fid = fid;
+    }
+
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Long uid) {
-        this.uid = uid;
+    public void setUid(String uid) {
+        this.uid = uid == null ? null : uid.trim();
     }
 
     public String getFeedbackinfo() {

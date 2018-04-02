@@ -23,6 +23,8 @@ public class Taskinfo {
 
     private String tpic;
 
+    private String uid;
+
     public Integer getTid() {
         return tid;
     }
@@ -101,5 +103,13 @@ public class Taskinfo {
 
     public void setTpic(String tpic) {
         this.tpic = tpic == null ? null : tpic.trim();
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid == null ? null : uid.trim();
     }
 }

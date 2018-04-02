@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lip.mapper.FeedbackMapper" >
   <resultMap id="BaseResultMap" type="com.lip.pojo.Feedback" >
-    <result column="uid" property="uid" jdbcType="BIGINT" />
+    <id column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
     <result column="feedbackinfo" property="feedbackinfo" jdbcType="VARCHAR" />
     <result column="fstatus" property="fstatus" jdbcType="INTEGER" />
   </resultMap>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    uid, feedbackinfo, fstatus
+    fid, uid, feedbackinfo, fstatus
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.FeedbackExample" >
     select
@@ -81,6 +82,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedback
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from feedback
+    where fid = #{fid,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.lip.pojo.FeedbackExample" >
     delete from feedback
     <if test="_parameter != null" >
@@ -88,14 +99,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lip.pojo.Feedback" >
-    insert into feedback (uid, feedbackinfo, fstatus
-      )
-    values (#{uid,jdbcType=BIGINT}, #{feedbackinfo,jdbcType=VARCHAR}, #{fstatus,jdbcType=INTEGER}
-      )
+    insert into feedback (fid, uid, feedbackinfo, 
+      fstatus)
+    values (#{fid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{feedbackinfo,jdbcType=VARCHAR}, 
+      #{fstatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lip.pojo.Feedback" >
     insert into feedback
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        fid,
+      </if>
       <if test="uid != null" >
         uid,
       </if>
@@ -107,8 +121,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
       <if test="uid != null" >
-        #{uid,jdbcType=BIGINT},
+        #{uid,jdbcType=VARCHAR},
       </if>
       <if test="feedbackinfo != null" >
         #{feedbackinfo,jdbcType=VARCHAR},
@@ -127,8 +144,11 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update feedback
     <set >
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
       <if test="record.uid != null" >
-        uid = #{record.uid,jdbcType=BIGINT},
+        uid = #{record.uid,jdbcType=VARCHAR},
       </if>
       <if test="record.feedbackinfo != null" >
         feedbackinfo = #{record.feedbackinfo,jdbcType=VARCHAR},
@@ -143,11 +163,34 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update feedback
-    set uid = #{record.uid,jdbcType=BIGINT},
+    set fid = #{record.fid,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=VARCHAR},
       feedbackinfo = #{record.feedbackinfo,jdbcType=VARCHAR},
       fstatus = #{record.fstatus,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lip.pojo.Feedback" >
+    update feedback
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackinfo != null" >
+        feedbackinfo = #{feedbackinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fstatus != null" >
+        fstatus = #{fstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lip.pojo.Feedback" >
+    update feedback
+    set uid = #{uid,jdbcType=VARCHAR},
+      feedbackinfo = #{feedbackinfo,jdbcType=VARCHAR},
+      fstatus = #{fstatus,jdbcType=INTEGER}
+    where fid = #{fid,jdbcType=INTEGER}
   </update>
 </mapper>

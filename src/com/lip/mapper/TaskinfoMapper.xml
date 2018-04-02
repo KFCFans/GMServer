@@ -12,6 +12,7 @@
     <result column="tstatus" property="tstatus" jdbcType="INTEGER" />
     <result column="tname" property="tname" jdbcType="VARCHAR" />
     <result column="tpic" property="tpic" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    tid, aid, rtype, iid, stime, etime, pid, tstatus, tname, tpic
+    tid, aid, rtype, iid, stime, etime, pid, tstatus, tname, tpic, uid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.TaskinfoExample" >
     select
@@ -108,11 +109,11 @@
     insert into taskinfo (tid, aid, rtype, 
       iid, stime, etime, 
       pid, tstatus, tname, 
-      tpic)
+      tpic, uid)
     values (#{tid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{rtype,jdbcType=INTEGER}, 
       #{iid,jdbcType=INTEGER}, #{stime,jdbcType=TIMESTAMP}, #{etime,jdbcType=TIMESTAMP}, 
       #{pid,jdbcType=INTEGER}, #{tstatus,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, 
-      #{tpic,jdbcType=VARCHAR})
+      #{tpic,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lip.pojo.Taskinfo" >
     insert into taskinfo
@@ -147,6 +148,9 @@
       <if test="tpic != null" >
         tpic,
       </if>
+      <if test="uid != null" >
+        uid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tid != null" >
@@ -178,6 +182,9 @@
       </if>
       <if test="tpic != null" >
         #{tpic,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -220,6 +227,9 @@
       <if test="record.tpic != null" >
         tpic = #{record.tpic,jdbcType=VARCHAR},
       </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +246,8 @@
       pid = #{record.pid,jdbcType=INTEGER},
       tstatus = #{record.tstatus,jdbcType=INTEGER},
       tname = #{record.tname,jdbcType=VARCHAR},
-      tpic = #{record.tpic,jdbcType=VARCHAR}
+      tpic = #{record.tpic,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -271,6 +282,9 @@
       <if test="tpic != null" >
         tpic = #{tpic,jdbcType=VARCHAR},
       </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
     </set>
     where tid = #{tid,jdbcType=INTEGER}
   </update>
@@ -284,7 +298,8 @@
       pid = #{pid,jdbcType=INTEGER},
       tstatus = #{tstatus,jdbcType=INTEGER},
       tname = #{tname,jdbcType=VARCHAR},
-      tpic = #{tpic,jdbcType=VARCHAR}
+      tpic = #{tpic,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR}
     where tid = #{tid,jdbcType=INTEGER}
   </update>
 </mapper>
