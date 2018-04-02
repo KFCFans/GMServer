@@ -15,7 +15,11 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public RequestResult commitFeedBack(Feedback feedback) {
-
-        return null;
+        try {
+            feedbackMapper.insertSelective(feedback);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","反馈成功!");
     }
 }
