@@ -1,6 +1,7 @@
 package com.lip.controller;
 
 import com.lip.pojo.Feedback;
+import com.lip.pojo.result.FeedbackListResult;
 import com.lip.pojo.result.RequestResult;
 import com.lip.service.FeedBackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,11 @@ public class FeedbackController {
     @RequestMapping("/commit")
     public RequestResult commitFeedbackinfo(Feedback feedback){
         return feedBackService.commitFeedBack(feedback);
+    }
+
+    @ResponseBody
+    @RequestMapping("list")
+    public FeedbackListResult getFeedbacklist(){
+        return feedBackService.getFeedBack();
     }
 }

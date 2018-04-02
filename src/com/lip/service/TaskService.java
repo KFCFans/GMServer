@@ -5,7 +5,8 @@ import com.lip.pojo.result.TaskListResult;
 
 public interface TaskService {
 
-    public TaskListResult getTaskList();
+    // 获取用户未完成任务
+    public TaskListResult getTaskList(String uid);
 
     public RequestResult finishTask(int tid,String uid);
 

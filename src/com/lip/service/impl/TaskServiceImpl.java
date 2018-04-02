@@ -19,8 +19,11 @@ public class TaskServiceImpl implements TaskService {
     public TaskinfoMapper taskinfoMapper;
 
     @Override
-    public TaskListResult getTaskList() {
+    public TaskListResult getTaskList(String uid) {
         TaskinfoExample example=new TaskinfoExample();
+        TaskinfoExample.Criteria criteria=example.createCriteria();
+        criteria.andUidEqualTo(uid);
+        criteria.andTstatusLessThan(2);
         List<Taskinfo> data=null;
         try {
             data=taskinfoMapper.selectByExample(example);

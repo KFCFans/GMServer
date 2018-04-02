@@ -16,8 +16,8 @@ public class TaskController {
 
     @ResponseBody
     @RequestMapping("/list")
-    public TaskListResult getTaskList(){
-        return taskService.getTaskList();
+    public TaskListResult getTaskList(String uid){
+        return taskService.getTaskList(uid);
     }
 
 }
