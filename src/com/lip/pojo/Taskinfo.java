@@ -9,8 +9,6 @@ public class Taskinfo {
 
     private Integer rtype;
 
-    private Integer iid;
-
     private Date stime;
 
     private Date etime;
@@ -24,6 +22,10 @@ public class Taskinfo {
     private String tpic;
 
     private String uid;
+
+    private String tdetail;
+
+    private Integer iid`;
 
     public Integer getTid() {
         return tid;
@@ -47,14 +49,6 @@ public class Taskinfo {
 
     public void setRtype(Integer rtype) {
         this.rtype = rtype;
-    }
-
-    public Integer getIid() {
-        return iid;
-    }
-
-    public void setIid(Integer iid) {
-        this.iid = iid;
     }
 
     public Date getStime() {
@@ -111,5 +105,21 @@ public class Taskinfo {
 
     public void setUid(String uid) {
         this.uid = uid == null ? null : uid.trim();
+    }
+
+    public String getTdetail() {
+        return tdetail;
+    }
+
+    public void setTdetail(String tdetail) {
+        this.tdetail = tdetail == null ? null : tdetail.trim();
+    }
+
+    public Integer getIid`() {
+        return iid`;
+    }
+
+    public void setIid`(Integer iid`) {
+        this.iid` = iid`;
     }
 }

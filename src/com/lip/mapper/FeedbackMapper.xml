@@ -6,6 +6,7 @@
     <result column="uid" property="uid" jdbcType="VARCHAR" />
     <result column="feedbackinfo" property="feedbackinfo" jdbcType="VARCHAR" />
     <result column="fstatus" property="fstatus" jdbcType="INTEGER" />
+    <result column="fimg" property="fimg" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    fid, uid, feedbackinfo, fstatus
+    fid, uid, feedbackinfo, fstatus, fimg
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.FeedbackExample" >
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.lip.pojo.Feedback" >
     insert into feedback (fid, uid, feedbackinfo, 
-      fstatus)
+      fstatus, fimg)
     values (#{fid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{feedbackinfo,jdbcType=VARCHAR}, 
-      #{fstatus,jdbcType=INTEGER})
+      #{fstatus,jdbcType=INTEGER}, #{fimg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lip.pojo.Feedback" >
     insert into feedback
@@ -119,6 +120,9 @@
       <if test="fstatus != null" >
         fstatus,
       </if>
+      <if test="fimg != null" >
+        fimg,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="fid != null" >
@@ -132,6 +136,9 @@
       </if>
       <if test="fstatus != null" >
         #{fstatus,jdbcType=INTEGER},
+      </if>
+      <if test="fimg != null" >
+        #{fimg,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.fstatus != null" >
         fstatus = #{record.fstatus,jdbcType=INTEGER},
       </if>
+      <if test="record.fimg != null" >
+        fimg = #{record.fimg,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set fid = #{record.fid,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=VARCHAR},
       feedbackinfo = #{record.feedbackinfo,jdbcType=VARCHAR},
-      fstatus = #{record.fstatus,jdbcType=INTEGER}
+      fstatus = #{record.fstatus,jdbcType=INTEGER},
+      fimg = #{record.fimg,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="fstatus != null" >
         fstatus = #{fstatus,jdbcType=INTEGER},
       </if>
+      <if test="fimg != null" >
+        fimg = #{fimg,jdbcType=VARCHAR},
+      </if>
     </set>
     where fid = #{fid,jdbcType=INTEGER}
   </update>
@@ -190,7 +204,8 @@
     update feedback
     set uid = #{uid,jdbcType=VARCHAR},
       feedbackinfo = #{feedbackinfo,jdbcType=VARCHAR},
-      fstatus = #{fstatus,jdbcType=INTEGER}
+      fstatus = #{fstatus,jdbcType=INTEGER},
+      fimg = #{fimg,jdbcType=VARCHAR}
     where fid = #{fid,jdbcType=INTEGER}
   </update>
 </mapper>

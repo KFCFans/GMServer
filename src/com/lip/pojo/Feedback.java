@@ -9,6 +9,8 @@ public class Feedback {
 
     private Integer fstatus;
 
+    private String fimg;
+
     public Integer getFid() {
         return fid;
     }
@@ -39,5 +41,13 @@ public class Feedback {
 
     public void setFstatus(Integer fstatus) {
         this.fstatus = fstatus;
+    }
+
+    public String getFimg() {
+        return fimg;
+    }
+
+    public void setFimg(String fimg) {
+        this.fimg = fimg == null ? null : fimg.trim();
     }
 }

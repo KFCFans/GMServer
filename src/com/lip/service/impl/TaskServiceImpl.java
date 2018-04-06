@@ -1,6 +1,8 @@
 package com.lip.service.impl;
 
+import com.lip.mapper.PlantindividualMapper;
 import com.lip.mapper.TaskinfoMapper;
+import com.lip.pojo.Plantindividual;
 import com.lip.pojo.Taskinfo;
 import com.lip.pojo.TaskinfoExample;
 import com.lip.pojo.Userinfo;
@@ -18,6 +20,9 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     public TaskinfoMapper taskinfoMapper;
 
+    @Autowired
+    public PlantindividualMapper plantindividualMapper;
+
     @Override
     public TaskListResult getTaskList(String uid) {
         TaskinfoExample example=new TaskinfoExample();
@@ -33,28 +38,71 @@ public class TaskServiceImpl implements TaskService {
         return new TaskListResult(200,"OK",data);
     }
 
-    /**
-     * 任务状态，0未完成，1延期，2完成
-     */
     @Override
-    public RequestResult finishTask(int tid, String uid) {
+    public RequestResult addTaskFinished(String uid, int pid, int aid, String ipic,int tid) {
+        Plantindividual plantindividual=new Plantindividual();
+        plantindividual.setAid(aid);
+        plantindividual.setIstatus(0);
+        plantindividual.setIpic("zw");
+        plantindividual.setPid(pid);
+        try {
+            plantindividualMapper.insertSelective(plantindividual);
+            finishedTask(tid);
+
+        }catch (Exception E){
+            return new RequestResult(500,"failed",E.getMessage());
+        }
+        return new RequestResult(200,"OK","新增成功！");
+    }
+
+    @Override
+    public RequestResult delTaskFinished(String uid, int iid,int tid) {
+        try {
+            plantindividualMapper.deleteByPrimaryKey(iid);
+            finishedTask(tid);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","删除成功!");
+    }
+
+    @Override
+    public RequestResult saveTaskFinished(String uid, int iid,int tid) {
+        Plantindividual plantindividual=new Plantindividual();
+        plantindividual.setIid(iid);
+        plantindividual.setIstatus(0);
+        try {
+            plantindividualMapper.updateByPrimaryKeySelective(plantindividual);
+            finishedTask(tid);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","维护成功！");
+    }
+
+    @Override
+    public RequestResult replaceTaskFinished(String uid, int iid, int aid,int tid) {
+        Plantindividual plantindividual=new Plantindividual();
+        plantindividual.setIstatus(0);
+        plantindividual.setIid(iid);
+        plantindividual.setAid(aid);
+        try {
+            plantindividualMapper.updateByPrimaryKeySelective(plantindividual);
+            finishedTask(tid);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","移植成功!");
+    }
+
+    private void finishedTask(int tid) throws Exception{
         Taskinfo taskinfo=new Taskinfo();
         taskinfo.setTid(tid);
         taskinfo.setTstatus(2);
-
-
-        return null;
+        taskinfoMapper.updateByPrimaryKeySelective(taskinfo);
     }
 
-    @Override
-    public RequestResult delayTask(int tid, int days) {
-        return null;
-    }
-
-    @Override
-    public RequestResult undoTask(int tid, String uid) {
-        return null;
-    }
+    //FIXME: 如果需要成就系统，在finished Task中加入成就增长实现方法即可
 
 
 }
