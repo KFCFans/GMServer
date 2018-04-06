@@ -48,7 +48,7 @@ public class TaskController {
     }
 
     @ResponseBody
-    @ResourceMapping("/maintain")
+    @RequestMapping("/maintain")
     public RequestResult maintainTaskFinished(String uid,int iid,int tid){
         return taskService.saveTaskFinished(uid, iid, tid);
     }

@@ -53,7 +53,7 @@ public class TaskServiceImpl implements TaskService {
         Plantindividual plantindividual=new Plantindividual();
         plantindividual.setAid(aid);
         plantindividual.setIstatus(0);
-        plantindividual.setIpic("zw");
+        plantindividual.setIpic(ipic);
         plantindividual.setPid(pid);
         try {
             plantindividualMapper.insertSelective(plantindividual);
