@@ -39,6 +39,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public RequestResult newTask(Taskinfo taskinfo) {
+        try {
+            taskinfoMapper.insertSelective(taskinfo);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","下达任务成功！");
+    }
+
+    @Override
     public RequestResult addTaskFinished(String uid, int pid, int aid, String ipic,int tid) {
         Plantindividual plantindividual=new Plantindividual();
         plantindividual.setAid(aid);

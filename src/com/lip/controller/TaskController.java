@@ -1,5 +1,6 @@
 package com.lip.controller;
 
+import com.lip.pojo.Taskinfo;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;
 import com.lip.service.TaskService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 @Controller
 @RequestMapping("/task")
@@ -22,9 +24,33 @@ public class TaskController {
     }
 
     @ResponseBody
-    @RequestMapping("/finish")
-    public RequestResult finishTask(String uid,int tid){
-        return taskService.finishTask(tid,uid);
+    @ResourceMapping("/new")
+    public RequestResult newTask(Taskinfo taskinfo){
+        return taskService.newTask(taskinfo);
+    }
+
+    @ResponseBody
+    @RequestMapping("/add")
+    public RequestResult addTaskFinished(String uid,int aid,int tid,int pid,String ipic){
+        return taskService.addTaskFinished(uid,pid,aid,ipic,tid);
+    }
+
+    @ResponseBody
+    @RequestMapping("/del")
+    public RequestResult delTaskFinished(String uid,int tid,int iid){
+        return taskService.delTaskFinished(uid,iid,tid);
+    }
+
+    @ResponseBody
+    @RequestMapping("/replace")
+    public RequestResult replaceTaskFinished(String uid,int iid,int aid,int tid){
+        return taskService.replaceTaskFinished(uid,iid,aid,tid);
+    }
+
+    @ResponseBody
+    @ResourceMapping("/maintain")
+    public RequestResult maintainTaskFinished(String uid,int iid,int tid){
+        return taskService.saveTaskFinished(uid, iid, tid);
     }
 
 }

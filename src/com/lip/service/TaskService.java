@@ -1,5 +1,6 @@
 package com.lip.service;
 
+import com.lip.pojo.Taskinfo;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;
 
@@ -7,6 +8,9 @@ public interface TaskService {
 
     // 获取用户未完成任务
     public TaskListResult getTaskList(String uid);
+
+    // 新建任务
+    public RequestResult newTask(Taskinfo taskinfo);
 
     // 完成增的任务
     public RequestResult addTaskFinished(String uid,int pid,int aid,String ipic,int tid);

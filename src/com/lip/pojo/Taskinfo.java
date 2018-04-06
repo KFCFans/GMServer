@@ -25,7 +25,7 @@ public class Taskinfo {
 
     private String tdetail;
 
-    private Integer iid`;
+    private Integer iid;
 
     public Integer getTid() {
         return tid;
@@ -115,11 +115,11 @@ public class Taskinfo {
         this.tdetail = tdetail == null ? null : tdetail.trim();
     }
 
-    public Integer getIid`() {
-        return iid`;
+    public Integer getIid() {
+        return iid;
     }
 
-    public void setIid`(Integer iid`) {
-        this.iid` = iid`;
+    public void setIid(Integer iid) {
+        this.iid = iid;
     }
 }
