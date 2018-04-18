@@ -26,4 +26,10 @@ public class UserSecurityController {
         return userSecurityServie.tokenLogin(token);
     }
 
+    @RequestMapping("/login")
+    public String loginbyJSP(String username,String password){
+        // 登陆成功跳转main.jsp，失败则跳转login.jsp
+        return "main";
+    }
+
 }
