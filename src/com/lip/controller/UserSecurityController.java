@@ -29,7 +29,7 @@ public class UserSecurityController {
     @RequestMapping("/login")
     public String loginbyJSP(String username,String password){
         // 登陆成功跳转main.jsp，失败则跳转login.jsp
-        return "main";
+        return userSecurityServie.bgLogin(username,password);
     }
 
 }

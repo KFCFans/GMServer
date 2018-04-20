@@ -18,7 +18,7 @@
 
     <h1 class="text-center">用户登陆</h1>
 
-    <form action="/gm/security/login" method="get">
+    <form action="/gm/security/login" method="post">
       <div class="form-group">
         <label>用户名：</label>
         <input type="text" class="form-control" name="username">

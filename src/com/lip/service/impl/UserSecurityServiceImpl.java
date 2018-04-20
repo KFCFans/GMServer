@@ -8,6 +8,7 @@ import com.lip.service.UserSecurityServie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,6 +63,21 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
     }
 
     @Override
+    public String bgLogin(String username, String password) {
+        String md5pwd;
+        Userinfo userinfo=null;
+        md5pwd=MD5(password);
+        try {
+            userinfo=userinfoMapper.selectByPrimaryKey(username);
+        }catch (Exception e){
+            return "login";
+        }
+        if(userinfo==null) return "login";
+        if(userinfo.getPassword().equals(md5pwd)) return "main";
+        return "login";
+    }
+
+    @Override
     public RequestResult changePassword(String uid, String oldpwd, String newpwd) {
         String token=UUID.randomUUID().toString();
         Userinfo userinfo=null;
@@ -94,5 +110,27 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
         }
         if(list==null||list.size()==0) return false;
         else return true;
+    }
+
+    private String MD5(String s) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] bytes = md.digest(s.getBytes("utf-8"));
+            return toHex(bytes);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static String toHex(byte[] bytes) {
+
+        final char[] HEX_DIGITS = "0123456789abcdef".toCharArray();
+        StringBuilder ret = new StringBuilder(bytes.length * 2);
+        for (int i=0; i<bytes.length; i++) {
+            ret.append(HEX_DIGITS[(bytes[i] >> 4) & 0x0f]);
+            ret.append(HEX_DIGITS[bytes[i] & 0x0f]);
+        }
+        return ret.toString();
     }
 }

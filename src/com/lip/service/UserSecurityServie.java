@@ -14,6 +14,9 @@ public interface UserSecurityServie {
     // 使用Token登陆
     public RequestResult tokenLogin(String token);
 
+    // 后台管理系统登陆
+    public String bgLogin(String username,String password);
+
     // 修改密码
     public RequestResult changePassword(String uid,String oldpwd,String newpwd);
 
