@@ -3,6 +3,7 @@ package com.lip.service.impl;
 import com.lip.mapper.PlantindividualMapper;
 import com.lip.mapper.TaskinfoMapper;
 import com.lip.pojo.*;
+import com.lip.pojo.jspbean.MyTaskInfo;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;
 import com.lip.service.TaskService;
@@ -116,8 +117,8 @@ public class TaskServiceImpl implements TaskService {
         }catch (Exception e){
             return null;
         }
-        MyTaskInfo taskInfo=new MyTaskInfo();
         for(int i=0;i<list.size();i++){
+            MyTaskInfo taskInfo=new MyTaskInfo();
             taskInfo.setUid(list.get(i).getUid());
             taskInfo.setTname(list.get(i).getTname());
             // 地区

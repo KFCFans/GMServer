@@ -1,6 +1,8 @@
 package com.lip.controller;
 
 import com.lip.pojo.Feedback;
+import com.lip.pojo.Userinfo;
+import com.lip.pojo.jspbean.MyUserInfo;
 import com.lip.pojo.result.FeedbackListResult;
 import com.lip.service.FeedBackService;
 import com.lip.service.TaskService;
@@ -46,8 +48,21 @@ public class RedirectController {
     }
 
     @RequestMapping("/user")
-    public String gotoUser(){
-        return "user";
+    public ModelAndView gotoUser(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("user");
+        List<Userinfo> list=userInfoService.getMemberList();
+        List<MyUserInfo> res=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            MyUserInfo myUserInfo=new MyUserInfo();
+            myUserInfo.setAchievement(list.get(i).getAchievement());
+            myUserInfo.setNickname(list.get(i).getNickname());
+            myUserInfo.setUid(list.get(i).getUid());
+            myUserInfo.setGender(list.get(i).getGender()==0?"男":"女");
+            res.add(myUserInfo);
+        }
+        mv.addObject("mblist",res);
+        return mv;
     }
 
     @RequestMapping("/task")
@@ -74,5 +89,15 @@ public class RedirectController {
     @RequestMapping("/offline")
     public String gotoLogin(){
         return "login";
+    }
+
+    // 添加新员工
+    @RequestMapping("/addworker")
+    public ModelAndView addNewWorker(Userinfo userinfo){
+        ModelAndView mv=new ModelAndView();
+        userinfo.setPriority(1);
+        userSecurityServie.userRegister(userinfo);
+        mv.setViewName("user");
+        return mv;
     }
 }

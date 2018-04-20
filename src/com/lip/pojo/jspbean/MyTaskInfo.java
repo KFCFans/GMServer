@@ -1,4 +1,4 @@
-package com.lip.pojo;
+package com.lip.pojo.jspbean;
 
 public class MyTaskInfo {
 

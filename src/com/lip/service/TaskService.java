@@ -1,6 +1,6 @@
 package com.lip.service;
 
-import com.lip.pojo.MyTaskInfo;
+import com.lip.pojo.jspbean.MyTaskInfo;
 import com.lip.pojo.Taskinfo;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;

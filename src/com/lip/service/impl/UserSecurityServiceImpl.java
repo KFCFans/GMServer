@@ -22,8 +22,7 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
     public RequestResult userRegister(Userinfo userinfo) {
         String token = UUID.randomUUID().toString();
         userinfo.setAccesstoken(token);
-        userinfo.setPriority(0);
-        userinfo.setAchievement(0);
+        userinfo.setAchievement(100);
         try {
             userinfoMapper.insert(userinfo);
         }catch (Exception e){
