@@ -95,16 +95,7 @@
                         <td>${mb.gender}</td>
                         <td>${mb.achievement}</td>
                         <td>
-                            <div role="presentation" class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    操作 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">编辑</a></li>
-                                    <li><a href="/gm/redirect/delworker?uid=${mb.uid}" onclick="return confirm('确定要删除此员工吗？');">删除</a></li>
-                                    <li><a href="#">修改密码</a></li>
-                                </ul>
-                            </div>
+                           <a href="/gm/redirect/delworker?uid=${mb.uid}" onclick="return confirm('确定要删除此员工吗？');"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </c:forEach>

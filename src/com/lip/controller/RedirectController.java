@@ -97,7 +97,7 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         userinfo.setPriority(1);
         userSecurityServie.userRegister(userinfo);
-        mv.setViewName("user");
+        mv.setViewName("redirect:user");
         return mv;
     }
 
@@ -105,7 +105,7 @@ public class RedirectController {
     @RequestMapping("/delworker")
     public ModelAndView delWorker(String uid){
         ModelAndView mv=new ModelAndView();
-        mv.setViewName("user");
+        mv.setViewName("redirect:user");
         userSecurityServie.delWorker(uid);
         return mv;
     }
