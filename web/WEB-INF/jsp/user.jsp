@@ -61,9 +61,6 @@
     </div>
 </nav>
 
-<%
-    String sex[]={"男","女"};
-%>
 <div class="container">
     <div class="row">
         <div class="col-md-2">

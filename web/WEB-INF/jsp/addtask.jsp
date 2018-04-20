@@ -61,34 +61,74 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/task" class="list-group-item active">任务管理</a>
-                <a href="/gm/redirect/addtask" class="list-group-item">发布任务</a>
+                <a href="/gm/redirect/task" class="list-group-item">任务管理</a>
+                <a href="/gm/redirect/addtask" class="list-group-item active">发布任务</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h4 style="margin-top: 0px;size: 16px">内容管理</h4>
+                <h4 style="margin-top: 0px;size: 16px">发布任务</h4>
             </div>
             <ul class="nav nav-tabs">
-                <li class="active">
+                <li>
                     <a href="/gm/redirect/task">任务管理</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/gm/redirect/addtask">发布任务</a>
                 </li>
             </ul>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>任务类型</th>
-                    <th>负责人</th>
-                    <th>发布时间</th>
-                    <th>完成状态</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
 
-            </table>
+            <form action="#" method="get">
+
+                <div class="form-group">
+                    <label for="uid_id">负责人</label>
+                    <select class="form-control" name="uid" id="uid_id">
+                        <c:forEach items="${requestScope.uidlist }" var="bean" varStatus="varstatus">
+                            <option value="${bean.uid}">${bean.nickname}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="rtype_id">任务类型</label>
+                    <select class="form-control" name="rtype" id="rtype_id">
+                        <option value="0">维护</option>
+                        <option value="1">移植</option>
+                        <option value="2">新增</option>
+                        <option value="3">删除</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="aid_id">任务地点</label>
+                    <select class="form-control" name="aid" id="aid_id">
+                        <c:forEach items="${requestScope.arealist }" var="bean" varStatus="varstatus">
+                            <option value="${varstatus.count}">${bean.aplace}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pid_id">植物类型</label>
+                    <select class="form-control" name="pid" id="pid_id">
+                        <c:forEach items="${requestScope.plantlist }" var="bean" varStatus="varstatus">
+                            <option value="${varstatus.count}">${bean.pname}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <table for="tname_id">任务名称</table>
+                    <input type="text" class="form-control" name="tname" id="tname_id" placeholder="请输入任务名称">
+                </div>
+
+                <div class="form-group">
+                    <label for="detail_id">任务详情</label>
+                    <textarea class="form-control" rows="15" cols="10" placeholder="请输入任务详情" id="detail_id" name="tdetail"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default pull-right">发布任务</button>
+            </form>
         </div>
     </div>
 </div>

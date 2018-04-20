@@ -4,10 +4,7 @@ import com.lip.pojo.Feedback;
 import com.lip.pojo.Userinfo;
 import com.lip.pojo.jspbean.MyUserInfo;
 import com.lip.pojo.result.FeedbackListResult;
-import com.lip.service.FeedBackService;
-import com.lip.service.TaskService;
-import com.lip.service.UserInfoService;
-import com.lip.service.UserSecurityServie;
+import com.lip.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +31,11 @@ public class RedirectController {
     @Autowired
     public TaskService taskService;
 
+    @Autowired
+    public AreaService areaService;
+
+    @Autowired
+    public PlantService plantService;
 
     @RequestMapping("/login")
     public ModelAndView loginbyJSP(String username,String password){
@@ -73,6 +75,16 @@ public class RedirectController {
     @RequestMapping("/response")
     public String gotoResponse(){
         return "response";
+    }
+
+    @RequestMapping("/addtask")
+    public ModelAndView gotoAddTask(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("addtask");
+        mv.addObject("arealist",areaService.getAreaList().getData());
+        mv.addObject("plantlist",plantService.getPlantList().getData());
+        mv.addObject("uidlist",userInfoService.getMemberList());
+        return mv;
     }
 
     @RequestMapping("/main")
