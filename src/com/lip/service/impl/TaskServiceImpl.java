@@ -2,16 +2,14 @@ package com.lip.service.impl;
 
 import com.lip.mapper.PlantindividualMapper;
 import com.lip.mapper.TaskinfoMapper;
-import com.lip.pojo.Plantindividual;
-import com.lip.pojo.Taskinfo;
-import com.lip.pojo.TaskinfoExample;
-import com.lip.pojo.Userinfo;
+import com.lip.pojo.*;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;
 import com.lip.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -103,6 +101,32 @@ public class TaskServiceImpl implements TaskService {
             return new RequestResult(500,"failed",e.getMessage());
         }
         return new RequestResult(200,"OK","移植成功!");
+    }
+
+    @Override
+    public List<MyTaskInfo> getTaskListForJSP() {
+        List<Taskinfo> list;
+        List<MyTaskInfo> res=new ArrayList<>();
+        TaskinfoExample example=new TaskinfoExample();
+
+        String area[]={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
+        String status[]={"未完成","延期","已完成"};
+        try {
+            list=taskinfoMapper.selectByExample(example);
+        }catch (Exception e){
+            return null;
+        }
+        MyTaskInfo taskInfo=new MyTaskInfo();
+        for(int i=0;i<list.size();i++){
+            taskInfo.setUid(list.get(i).getUid());
+            taskInfo.setTname(list.get(i).getTname());
+            // 地区
+            taskInfo.setArea(area[list.get(i).getAid()-1]);
+            // 状态
+            taskInfo.setStatus(status[list.get(i).getTstatus()]);
+            res.add(taskInfo);
+        }
+        return res;
     }
 
     private void finishedTask(int tid) throws Exception{

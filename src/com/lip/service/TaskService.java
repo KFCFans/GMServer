@@ -1,8 +1,11 @@
 package com.lip.service;
 
+import com.lip.pojo.MyTaskInfo;
 import com.lip.pojo.Taskinfo;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;
+
+import java.util.List;
 
 public interface TaskService {
 
@@ -23,4 +26,7 @@ public interface TaskService {
 
     // 完成移植的任务
     public RequestResult replaceTaskFinished(String uid,int iid,int aid,int tid);
+
+    // 获取任务列表
+    public List<MyTaskInfo> getTaskListForJSP();
 }

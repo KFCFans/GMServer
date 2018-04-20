@@ -62,15 +62,30 @@
 
 <div class="container">
 
-    <%
-        List<Feedback> fblist=(List<Feedback>)request.getAttribute("fblist");
-    %>
-
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">已发布任务</div>
             <div class="panel-body">
-                Panel content
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>地区</th>
+                        <th>内容</th>
+                        <th>负责人</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.tklist }" var="tk">
+                        <tr>
+                            <td>${tk.area}</td>
+                            <td>${tk.tname}</td>
+                            <td>${tk.uid}</td>
+                            <td>${tk.status}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -103,7 +118,24 @@
         <div class="panel panel-default">
             <div class="panel-heading">注册员工</div>
             <div class="panel-body">
-                Panel content
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>手机号</th>
+                        <th>贡献度</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.mblist }" var="mb">
+                        <tr>
+                            <td>${mb.nickname}</td>
+                            <td>${mb.uid}</td>
+                            <td>${mb.achievement}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
 

@@ -3,6 +3,8 @@ package com.lip.controller;
 import com.lip.pojo.Feedback;
 import com.lip.pojo.result.FeedbackListResult;
 import com.lip.service.FeedBackService;
+import com.lip.service.TaskService;
+import com.lip.service.UserInfoService;
 import com.lip.service.UserSecurityServie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,12 @@ public class RedirectController {
     @Autowired
     public UserSecurityServie userSecurityServie;
 
+    @Autowired
+    public UserInfoService userInfoService;
+
+    @Autowired
+    public TaskService taskService;
+
 
     @RequestMapping("/login")
     public ModelAndView loginbyJSP(String username,String password){
@@ -32,6 +40,8 @@ public class RedirectController {
         mv.setViewName(userSecurityServie.bgLogin(username,password));
         FeedbackListResult result=feedBackService.getFeedBack();
         mv.addObject("fblist",result.getData());
+        mv.addObject("mblist",userInfoService.getMemberList());
+        mv.addObject("tklist",taskService.getTaskListForJSP());
         return mv;
     }
 
@@ -56,7 +66,8 @@ public class RedirectController {
         mv.setViewName("main");
         FeedbackListResult result=feedBackService.getFeedBack();
         mv.addObject("fblist",result.getData());
-        System.out.println("反馈数量："+result.getData().size());
+        mv.addObject("mblist",userInfoService.getMemberList());
+        mv.addObject("tklist",taskService.getTaskListForJSP());
         return mv;
     }
 
