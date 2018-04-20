@@ -8,6 +8,7 @@
   Time: 15:03
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -61,6 +62,10 @@
 
 <div class="container">
 
+    <%
+        List<Feedback> fblist=(List<Feedback>)request.getAttribute("fblist");
+    %>
+
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">已发布任务</div>
@@ -82,7 +87,12 @@
                        </tr>
                     </thead>
                     <tbody>
-
+                    <c:forEach items="${requestScope.fblist }" var="fb">
+                        <tr>
+                       <td>${fb.feedbackinfo}</td>
+                        <td>${fb.uid}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -98,7 +108,6 @@
         </div>
 
     </div>
-
 
 </div>
 

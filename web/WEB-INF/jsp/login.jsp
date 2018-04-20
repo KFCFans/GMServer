@@ -20,7 +20,7 @@
 
     <h1 class="text-center">用户登陆</h1>
 
-    <form action="/gm/security/login" method="post">
+    <form action="/gm/redirect/login" method="post">
         <div class="form-group">
             <label>用户名：</label>
             <input type="text" class="form-control" name="username">
