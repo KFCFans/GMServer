@@ -31,7 +31,7 @@ public class FeedBackServiceImpl implements FeedBackService {
     public FeedbackListResult getFeedBack() {
         FeedbackExample example=new FeedbackExample();
         FeedbackExample.Criteria criteria=example.createCriteria();
-        criteria.andFstatusEqualTo(1);
+        criteria.andFstatusEqualTo(0);
         List<Feedback> list;
         try {
             list=feedbackMapper.selectByExample(example);

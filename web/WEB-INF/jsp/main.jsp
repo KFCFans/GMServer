@@ -1,4 +1,7 @@
-<%--
+<%@ page import="com.lip.pojo.result.FeedbackListResult" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.lip.pojo.Feedback" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: tengj
   Date: 2018/4/18
@@ -48,14 +51,56 @@
                         <li><a href="index.html"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;我的收藏</a></li>
                     </ul>
                 </li>
-                <li><a href="#bbs"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>
+                <li><a href="/gm/redirect/offline"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>
             </ul>
         </div>
         <!--导航-->
-
     </div>
 </nav>
 <!--导航-->
+
+<div class="container">
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">已发布任务</div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">最新反馈</div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                       <tr>
+                           <th>信息</th>
+                           <th>用户</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">注册员工</div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
 
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
