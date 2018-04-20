@@ -100,4 +100,13 @@ public class RedirectController {
         mv.setViewName("user");
         return mv;
     }
+
+    // 删除员工
+    @RequestMapping("/delworker")
+    public ModelAndView delWorker(String uid){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("user");
+        userSecurityServie.delWorker(uid);
+        return mv;
+    }
 }

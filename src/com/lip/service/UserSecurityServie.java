@@ -23,4 +23,7 @@ public interface UserSecurityServie {
     // AccessToken登陆验证
     public boolean checkAccessToken(String accesstoken);
 
+    // 删除员工（JSP方法）
+    public RequestResult delWorker(String uid);
+
 }

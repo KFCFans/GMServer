@@ -101,7 +101,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">编辑</a></li>
-                                    <li><a href="#?${mb.uid}">删除</a></li>
+                                    <li><a href="/gm/redirect/delworker?uid=${mb.uid}" onclick="return confirm('确定要删除此员工吗？');">删除</a></li>
                                     <li><a href="#">修改密码</a></li>
                                 </ul>
                             </div>

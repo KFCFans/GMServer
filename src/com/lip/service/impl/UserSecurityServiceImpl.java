@@ -111,6 +111,16 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
         else return true;
     }
 
+    @Override
+    public RequestResult delWorker(String uid) {
+        try {
+            userinfoMapper.deleteByPrimaryKey(uid);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","删除成功！");
+    }
+
     private String MD5(String s) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
