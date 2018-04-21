@@ -10,7 +10,10 @@ import com.lip.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,7 +41,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public RequestResult newTask(Taskinfo taskinfo) {
+    public RequestResult newTask(Taskinfo taskinfo,int lasttime) {
+        taskinfo.setStime(new Date());
+        taskinfo.setTstatus(0);
+
+        // 几天后的时间
+        Calendar now =Calendar.getInstance();
+        now.setTime(new Date());
+        now.set(Calendar.DATE,now.get(Calendar.DATE)+lasttime);
+        taskinfo.setEtime(now.getTime());
         try {
             taskinfoMapper.insertSelective(taskinfo);
         }catch (Exception e){
@@ -112,6 +123,7 @@ public class TaskServiceImpl implements TaskService {
 
         String area[]={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
         String status[]={"未完成","延期","已完成"};
+        String types[]={"维护","移植","新增","删除"};
         try {
             list=taskinfoMapper.selectByExample(example);
         }catch (Exception e){
@@ -119,15 +131,31 @@ public class TaskServiceImpl implements TaskService {
         }
         for(int i=0;i<list.size();i++){
             MyTaskInfo taskInfo=new MyTaskInfo();
+            taskInfo.setTid(list.get(i).getTid());
             taskInfo.setUid(list.get(i).getUid());
             taskInfo.setTname(list.get(i).getTname());
             // 地区
             taskInfo.setArea(area[list.get(i).getAid()-1]);
             // 状态
             taskInfo.setStatus(status[list.get(i).getTstatus()]);
+            taskInfo.setType(types[list.get(i).getRtype()]);
+            // 时间
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+            taskInfo.setStime(simpleDateFormat.format(list.get(i).getStime()));
+
             res.add(taskInfo);
         }
         return res;
+    }
+
+    @Override
+    public RequestResult delTask(int tid) {
+        try {
+            taskinfoMapper.deleteByPrimaryKey(tid);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","删除成功！");
     }
 
     private void finishedTask(int tid) throws Exception{

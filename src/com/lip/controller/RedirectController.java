@@ -1,6 +1,7 @@
 package com.lip.controller;
 
 import com.lip.pojo.Feedback;
+import com.lip.pojo.Taskinfo;
 import com.lip.pojo.Userinfo;
 import com.lip.pojo.jspbean.MyUserInfo;
 import com.lip.pojo.result.FeedbackListResult;
@@ -68,8 +69,11 @@ public class RedirectController {
     }
 
     @RequestMapping("/task")
-    public String gotoTask(){
-        return "task";
+    public ModelAndView gotoTask(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("task");
+        mv.addObject("tklist",taskService.getTaskListForJSP());
+        return mv;
     }
 
     @RequestMapping("/response")
@@ -119,6 +123,24 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:user");
         userSecurityServie.delWorker(uid);
+        return mv;
+    }
+
+    // 删除任务
+    @RequestMapping("/deltask")
+    public ModelAndView delTask(int tid){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("redirect:task");
+        taskService.delTask(tid);
+        return mv;
+    }
+
+    // 添加任务
+    @RequestMapping("/newtask")
+    public ModelAndView newTask(Taskinfo taskinfo,int lasttime){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("redirect:addtask");
+        taskService.newTask(taskinfo,lasttime);
         return mv;
     }
 }

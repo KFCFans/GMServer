@@ -13,7 +13,7 @@ public interface TaskService {
     public TaskListResult getTaskList(String uid);
 
     // 新建任务
-    public RequestResult newTask(Taskinfo taskinfo);
+    public RequestResult newTask(Taskinfo taskinfo,int lasttime);
 
     // 完成增的任务
     public RequestResult addTaskFinished(String uid,int pid,int aid,String ipic,int tid);
@@ -27,6 +27,9 @@ public interface TaskService {
     // 完成移植的任务
     public RequestResult replaceTaskFinished(String uid,int iid,int aid,int tid);
 
-    // 获取任务列表
+    // 获取任务列表(JSP)
     public List<MyTaskInfo> getTaskListForJSP();
+
+    // 删除任务(JSP)
+    public RequestResult delTask(int tid);
 }

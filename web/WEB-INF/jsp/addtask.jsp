@@ -66,9 +66,7 @@
             </div>
         </div>
         <div class="col-md-10">
-            <div class="page-header">
-                <h4 style="margin-top: 0px;size: 16px">发布任务</h4>
-            </div>
+
             <ul class="nav nav-tabs">
                 <li>
                     <a href="/gm/redirect/task">任务管理</a>
@@ -78,7 +76,7 @@
                 </li>
             </ul>
 
-            <form action="#" method="get">
+            <form action="/gm/redirect/newtask" method="get">
 
                 <div class="form-group">
                     <label for="uid_id">负责人</label>
@@ -118,8 +116,13 @@
                 </div>
 
                 <div class="form-group">
-                    <table for="tname_id">任务名称</table>
+                    <label for="tname_id">任务名称</label>
                     <input type="text" class="form-control" name="tname" id="tname_id" placeholder="请输入任务名称">
+                </div>
+
+                <div class="form-group">
+                    <label for="tlasttime_id">任务时间</label>
+                    <input type="text" class="form-control" name="lasttime" id="tlasttime_id" placeholder="请输入任务时间">
                 </div>
 
                 <div class="form-group">

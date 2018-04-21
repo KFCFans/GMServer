@@ -25,8 +25,8 @@ public class TaskController {
 
     @ResponseBody
     @ResourceMapping("/new")
-    public RequestResult newTask(Taskinfo taskinfo){
-        return taskService.newTask(taskinfo);
+    public RequestResult newTask(Taskinfo taskinfo,int lasttime){
+        return taskService.newTask(taskinfo,lasttime);
     }
 
     @ResponseBody

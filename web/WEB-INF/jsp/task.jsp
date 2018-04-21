@@ -66,9 +66,7 @@
             </div>
         </div>
         <div class="col-md-10">
-            <div class="page-header">
-                <h4 style="margin-top: 0px;size: 16px">内容管理</h4>
-            </div>
+
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="/gm/redirect/task">任务管理</a>
@@ -81,13 +79,27 @@
                 <thead>
                 <tr>
                     <th>任务类型</th>
+                    <th>任务名称</th>
                     <th>负责人</th>
                     <th>发布时间</th>
                     <th>完成状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
-
+                <tbody>
+                <c:forEach items="${requestScope.tklist }" var="tk">
+                    <tr>
+                        <td>${tk.type}</td>
+                        <td>${tk.tname}</td>
+                        <td>${tk.uid}</td>
+                        <td>${tk.stime}</td>
+                        <td>${tk.status}</td>
+                        <td>
+                            <a href="/gm/redirect/deltask?tid=${tk.tid}" onclick="return confirm('确定要删除此任务吗？');"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
     </div>
