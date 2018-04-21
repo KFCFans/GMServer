@@ -80,7 +80,6 @@
                     <a href="/gm/redirect/addtask">发布任务</a>
                 </li>
             </ul>
-            <div class="container">
 
                 <form action="/gm/redirect/newtask" method="get">
 
@@ -138,8 +137,6 @@
 
                     <button type="submit" class="btn btn-default pull-right">发布任务</button>
                 </form>
-
-            </div>
         </div>
     </div>
 </div>

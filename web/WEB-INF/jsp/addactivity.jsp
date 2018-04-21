@@ -15,6 +15,13 @@
 <head>
     <title>后台管理系统</title>
     <link href="<%=basePath%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/fileinput.min.css">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput_locale_zh.js"></script>
 </head>
 <body>
 
@@ -81,9 +88,7 @@
                 </li>
             </ul>
 
-            <div class="container">
                 <form action="#" method="get">
-
                     <div class="form-group">
                         <label for="avname_id">活动名称</label>
                         <input type="text" name="avname" id="avname_id" class="form-control">
@@ -95,20 +100,54 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="avpic_id">活动图片</label>
+                        <input type="file" name="avpic" class="file" data-show-preview="false" id="avpic_id" data-allowed-file-extensions='["jpg","png"]'>
+                    </div>
+
+                    <div class="form-group">
                         <label for="avdetail_id">活动详情</label>
                         <textarea class="form-control" rows="5" cols="10" placeholder="请输入活动详情" id="avdetail_id" name="avdetail"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-default pull-right">发布</button>
                 </form>
-            </div>
 
         </div>
     </div>
 </div>
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    function initFileInput(ctrlName,uploadUrl) {
+        var control = $('#'+ctrlName);
+        control.fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: uploadUrl,  //上传地址
+            showUpload: false, //是否显示上传按钮
+            showRemove:true,
+            dropZoneEnabled: false,
+            showCaption: true,//是否显示标题
+            allowedPreviewTypes: ['image'],
+            allowedFileTypes: ['image'],
+            allowedFileExtensions:  ['jpg', 'png'],
+            maxFileSize : 2000,
+            maxFileCount: 1,
+
+        }).on("filebatchselected", function(event, files) {
+            $(this).fileinput("upload");
+        })
+            .on("fileuploaded", function(event, data) {
+                $("#path").attr("value",data.response);
+            });
+    }
+
+    $(function () {
+        var path="${base}/admin/product/upload.htm";
+        initFileInput("file",path);
+
+    })
+
+</script>
+
 </body>
 </html>
