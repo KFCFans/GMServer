@@ -5,6 +5,7 @@
   Time: 13:26
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -56,6 +57,51 @@
     </div>
 </nav>
 <!--导航-->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="list-group">
+                <a href="/gm/redirect/response" class="list-group-item active">未读</a>
+                <a href="/gm/redirect/readresponse" class="list-group-item">已读</a>
+            </div>
+        </div>
+        <div class="col-md-10">
+
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="/gm/redirect/response">未读</a>
+                </li>
+                <li>
+                    <a href="/gm/redirect/readresponse">已读</a>
+                </li>
+            </ul>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>内容</th>
+                    <th>反馈者</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${requestScope.fblist }" var="fb">
+                    <tr>
+                        <td>${fb.feedbackinfo}</td>
+                        <td>${fb.uid}</td>
+                        <td>未读</td>
+                        <td>
+                            <a href="/gm/redirect/readfeedback?fid=${fb.fid}"><span class="glyphicon glyphicon-ok"></span></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

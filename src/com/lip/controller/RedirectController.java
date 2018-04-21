@@ -77,8 +77,19 @@ public class RedirectController {
     }
 
     @RequestMapping("/response")
-    public String gotoResponse(){
-        return "response";
+    public ModelAndView gotoResponse(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("response");
+        mv.addObject("fblist",feedBackService.getFeedBack().getData());
+        return mv;
+    }
+
+    @RequestMapping("/readresponse")
+    public ModelAndView gtotReadResponse(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("readresponse");
+        mv.addObject("fblist",feedBackService.getReadFeedBack().getData());
+        return mv;
     }
 
     @RequestMapping("/addtask")
@@ -141,6 +152,15 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:addtask");
         taskService.newTask(taskinfo,lasttime);
+        return mv;
+    }
+
+    // 已读反馈信息
+    @RequestMapping("/readfeedback")
+    public ModelAndView readFeedback(int fid){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("redirect:response");
+        feedBackService.readFeedBack(fid);
         return mv;
     }
 }

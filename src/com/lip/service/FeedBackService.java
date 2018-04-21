@@ -10,4 +10,10 @@ public interface FeedBackService {
 
     // 获取未读的反馈信息
     public FeedbackListResult getFeedBack();
+
+    // 获取已读的反馈信息
+    public FeedbackListResult getReadFeedBack();
+
+    // 已读信息
+    public RequestResult readFeedBack(int fid);
 }

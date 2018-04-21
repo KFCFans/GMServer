@@ -27,7 +27,7 @@
         <label>密码：</label>
         <input type="password" class="form-control" name="password">
       </div>
-      <input class="btn btn-block btn-success" type="submit">
+      <input class="btn btn-block btn-success" type="submit" value="登陆">
     </form>
 
   </div>

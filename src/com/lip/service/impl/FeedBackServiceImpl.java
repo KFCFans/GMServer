@@ -40,4 +40,31 @@ public class FeedBackServiceImpl implements FeedBackService {
         }
         return new FeedbackListResult(200,"OK",list);
     }
+
+    @Override
+    public FeedbackListResult getReadFeedBack() {
+        FeedbackExample example=new FeedbackExample();
+        FeedbackExample.Criteria criteria=example.createCriteria();
+        criteria.andFstatusEqualTo(1);
+        List<Feedback> list;
+        try {
+            list=feedbackMapper.selectByExample(example);
+        }catch (Exception e){
+            return new FeedbackListResult(500,"failed",null);
+        }
+        return new FeedbackListResult(200,"OK",list);
+    }
+
+    @Override
+    public RequestResult readFeedBack(int fid) {
+        Feedback feedback=new Feedback();
+        feedback.setFid(fid);
+        feedback.setFstatus(1);
+        try {
+            feedbackMapper.updateByPrimaryKeySelective(feedback);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","已读！");
+    }
 }

@@ -32,8 +32,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/gm/redirect/main"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
                 <li><a href="/gm/redirect/user"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
-                <li class="active"><a href="/gm/redirect/task" class="active"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
-                <li><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
+                <li><a href="/gm/redirect/task"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
+                <li class="active"><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -53,88 +53,52 @@
             </ul>
         </div>
         <!--导航-->
+
     </div>
 </nav>
 <!--导航-->
+
 
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/task" class="list-group-item">任务管理</a>
-                <a href="/gm/redirect/addtask" class="list-group-item active">发布任务</a>
+                <a href="/gm/redirect/response" class="list-group-item">未读</a>
+                <a href="/gm/redirect/readresponse" class="list-group-item active">已读</a>
             </div>
         </div>
         <div class="col-md-10">
 
             <ul class="nav nav-tabs">
                 <li>
-                    <a href="/gm/redirect/task">任务管理</a>
+                    <a href="/gm/redirect/response">未读</a>
                 </li>
                 <li class="active">
-                    <a href="/gm/redirect/addtask">发布任务</a>
+                    <a href="/gm/redirect/readresponse">已读</a>
                 </li>
             </ul>
-
-            <form action="/gm/redirect/newtask" method="get">
-
-                <div class="form-group">
-                    <label for="uid_id">负责人</label>
-                    <select class="form-control" name="uid" id="uid_id">
-                        <c:forEach items="${requestScope.uidlist }" var="bean" varStatus="varstatus">
-                            <option value="${bean.uid}">${bean.nickname}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="rtype_id">任务类型</label>
-                    <select class="form-control" name="rtype" id="rtype_id">
-                        <option value="0">维护</option>
-                        <option value="1">移植</option>
-                        <option value="2">新增</option>
-                        <option value="3">删除</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="aid_id">任务地点</label>
-                    <select class="form-control" name="aid" id="aid_id">
-                        <c:forEach items="${requestScope.arealist }" var="bean" varStatus="varstatus">
-                            <option value="${varstatus.count}">${bean.aplace}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="pid_id">植物类型</label>
-                    <select class="form-control" name="pid" id="pid_id">
-                        <c:forEach items="${requestScope.plantlist }" var="bean" varStatus="varstatus">
-                            <option value="${varstatus.count}">${bean.pname}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="tname_id">任务名称</label>
-                    <input type="text" class="form-control" name="tname" id="tname_id" placeholder="请输入任务名称">
-                </div>
-
-                <div class="form-group">
-                    <label for="tlasttime_id">任务时间</label>
-                    <input type="number" class="form-control" name="lasttime" id="tlasttime_id" placeholder="请输入任务时间">
-                </div>
-
-                <div class="form-group">
-                    <label for="detail_id">任务详情</label>
-                    <textarea class="form-control" rows="15" cols="10" placeholder="请输入任务详情" id="detail_id" name="tdetail"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-default pull-right">发布任务</button>
-            </form>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>内容</th>
+                    <th>反馈者</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${requestScope.fblist }" var="fb">
+                    <tr>
+                        <td>${fb.feedbackinfo}</td>
+                        <td>${fb.uid}</td>
+                        <td>已读</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
