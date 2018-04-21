@@ -32,9 +32,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="/gm/redirect/main"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
                 <li><a href="/gm/redirect/user"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
-                <li class="active"><a href="/gm/redirect/task" class="active"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
+                <li><a href="/gm/redirect/task" class="active"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
                 <li><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
-                <li><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
+                <li class="active"><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -62,80 +62,43 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/task" class="list-group-item">任务管理</a>
-                <a href="/gm/redirect/addtask" class="list-group-item active">发布任务</a>
+                <a href="/gm/redirect/manageactivity" class="list-group-item">活动管理</a>
+                <a href="/gm/redirect/addactivity" class="list-group-item active">发布活动</a>
             </div>
         </div>
         <div class="col-md-10">
 
             <ul class="nav nav-tabs">
                 <li>
-                    <a href="/gm/redirect/task">任务管理</a>
+                    <a href="/gm/redirect/manageactivity">活动管理</a>
                 </li>
                 <li class="active">
-                    <a href="/gm/redirect/addtask">发布任务</a>
+                    <a href="/gm/redirect/addactivity">发布活动</a>
                 </li>
             </ul>
+
             <div class="container">
-
-                <form action="/gm/redirect/newtask" method="get">
+                <form action="#" method="get">
 
                     <div class="form-group">
-                        <label for="uid_id">负责人</label>
-                        <select class="form-control" name="uid" id="uid_id">
-                            <c:forEach items="${requestScope.uidlist }" var="bean" varStatus="varstatus">
-                                <option value="${bean.uid}">${bean.nickname}</option>
-                            </c:forEach>
-                        </select>
+                        <label for="avname_id">活动名称</label>
+                        <input type="text" name="avname" id="avname_id" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="rtype_id">任务类型</label>
-                        <select class="form-control" name="rtype" id="rtype_id">
-                            <option value="0">维护</option>
-                            <option value="1">移植</option>
-                            <option value="2">新增</option>
-                            <option value="3">删除</option>
-                        </select>
+                        <label for="avplace_id">活动地点</label>
+                        <input type="text" name="avplace" id="avplace_id" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="aid_id">任务地点</label>
-                        <select class="form-control" name="aid" id="aid_id">
-                            <c:forEach items="${requestScope.arealist }" var="bean" varStatus="varstatus">
-                                <option value="${varstatus.count}">${bean.aplace}</option>
-                            </c:forEach>
-                        </select>
+                        <label for="avdetail_id">活动详情</label>
+                        <textarea class="form-control" rows="5" cols="10" placeholder="请输入活动详情" id="avdetail_id" name="avdetail"></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="pid_id">植物类型</label>
-                        <select class="form-control" name="pid" id="pid_id">
-                            <c:forEach items="${requestScope.plantlist }" var="bean" varStatus="varstatus">
-                                <option value="${varstatus.count}">${bean.pname}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tname_id">任务名称</label>
-                        <input type="text" class="form-control" name="tname" id="tname_id" placeholder="请输入任务名称">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tlasttime_id">任务时间</label>
-                        <input type="number" class="form-control" name="lasttime" id="tlasttime_id" placeholder="请输入任务时间">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="detail_id">任务详情</label>
-                        <textarea class="form-control" rows="8" cols="10" placeholder="请输入任务详情" id="detail_id" name="tdetail"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-default pull-right">发布任务</button>
+                    <button type="submit" class="btn btn-default pull-right">发布</button>
                 </form>
-
             </div>
+
         </div>
     </div>
 </div>

@@ -76,6 +76,16 @@ public class RedirectController {
         return mv;
     }
 
+    @RequestMapping("/addtask")
+    public ModelAndView gotoAddTask(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("addtask");
+        mv.addObject("arealist",areaService.getAreaList().getData());
+        mv.addObject("plantlist",plantService.getPlantList().getData());
+        mv.addObject("uidlist",userInfoService.getMemberList());
+        return mv;
+    }
+
     @RequestMapping("/response")
     public ModelAndView gotoResponse(){
         ModelAndView mv=new ModelAndView();
@@ -92,13 +102,18 @@ public class RedirectController {
         return mv;
     }
 
-    @RequestMapping("/addtask")
-    public ModelAndView gotoAddTask(){
+
+    @RequestMapping("/manageactivity")
+    public ModelAndView gotoManageActivity(){
         ModelAndView mv=new ModelAndView();
-        mv.setViewName("addtask");
-        mv.addObject("arealist",areaService.getAreaList().getData());
-        mv.addObject("plantlist",plantService.getPlantList().getData());
-        mv.addObject("uidlist",userInfoService.getMemberList());
+        mv.setViewName("manageactivity");
+        return mv;
+    }
+
+    @RequestMapping("/addactivity")
+    public ModelAndView gotoAddActivity(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("addactivity");
         return mv;
     }
 

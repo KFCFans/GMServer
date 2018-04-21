@@ -32,9 +32,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="/gm/redirect/main"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
                 <li><a href="/gm/redirect/user"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
-                <li><a href="/gm/redirect/task"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
-                <li class="active"><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
-                <li><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
+                <li><a href="/gm/redirect/task" class="active"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
+                <li><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
+                <li class="active"><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -54,44 +54,48 @@
             </ul>
         </div>
         <!--导航-->
-
     </div>
 </nav>
 <!--导航-->
-
 
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/response" class="list-group-item">未读</a>
-                <a href="/gm/redirect/readresponse" class="list-group-item active">已读</a>
+                <a href="/gm/redirect/manageactivity" class="list-group-item active">活动管理</a>
+                <a href="/gm/redirect/addactivity" class="list-group-item">发布活动</a>
             </div>
         </div>
         <div class="col-md-10">
 
             <ul class="nav nav-tabs">
-                <li>
-                    <a href="/gm/redirect/response">未读</a>
-                </li>
                 <li class="active">
-                    <a href="/gm/redirect/readresponse">已读</a>
+                    <a href="/gm/redirect/manageactivity">活动管理</a>
+                </li>
+                <li>
+                    <a href="/gm/redirect/addactivity">发布活动</a>
                 </li>
             </ul>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>内容</th>
-                    <th>反馈者</th>
-                    <th>状态</th>
+                    <th>活动名称</th>
+                    <th>活动地点</th>
+                    <th>开始时间</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${requestScope.fblist }" var="fb">
+                <c:forEach items="${requestScope.tklist }" var="tk">
                     <tr>
-                        <td>${fb.feedbackinfo}</td>
-                        <td>${fb.uid}</td>
-                        <td>已读</td>
+                        <td>${tk.type}</td>
+                        <td>${tk.tname}</td>
+                        <td>${tk.uid}</td>
+                        <td>${tk.stime}</td>
+                        <td>${tk.status}</td>
+                        <td>
+                            <a href="/gm/redirect/deltask?tid=${tk.tid}" onclick="return confirm('确定要删除此任务吗？');"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -99,7 +103,6 @@
         </div>
     </div>
 </div>
-
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
