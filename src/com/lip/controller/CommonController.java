@@ -1,22 +1,33 @@
 package com.lip.controller;
 
 import com.lip.pojo.result.AreaListResult;
+import com.lip.pojo.result.ViewpagerListResult;
 import com.lip.service.AreaService;
+import com.lip.service.ViewpagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/area")
-public class AreaController {
+@RequestMapping("/common")
+public class CommonController {
 
     @Autowired
     private AreaService areaService;
 
-    @RequestMapping("/list")
+    @Autowired
+    private ViewpagerService viewpagerService;
+
+    @RequestMapping("/arealist")
     @ResponseBody
     public AreaListResult getAreaListInfo() {
         return areaService.getAreaList();
+    }
+
+    @RequestMapping("/vplist")
+    @ResponseBody
+    public ViewpagerListResult getViewPagerList(){
+        return viewpagerService.getViewPager();
     }
 }

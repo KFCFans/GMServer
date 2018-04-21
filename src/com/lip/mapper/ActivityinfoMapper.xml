@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lip.mapper.ActivityinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lip.pojo.Activityinfo" >
+    <id column="avid" property="avid" jdbcType="INTEGER" />
+    <result column="avname" property="avname" jdbcType="VARCHAR" />
+    <result column="avplace" property="avplace" jdbcType="VARCHAR" />
+    <result column="avstime" property="avstime" jdbcType="DATE" />
+    <result column="avpic" property="avpic" jdbcType="VARCHAR" />
+    <result column="avdetail" property="avdetail" jdbcType="VARCHAR" />
+    <result column="avetime" property="avetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    avid, avname, avplace, avstime, avpic, avdetail, avetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.ActivityinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activityinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activityinfo
+    where avid = #{avid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activityinfo
+    where avid = #{avid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lip.pojo.ActivityinfoExample" >
+    delete from activityinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lip.pojo.Activityinfo" >
+    insert into activityinfo (avid, avname, avplace, 
+      avstime, avpic, avdetail, 
+      avetime)
+    values (#{avid,jdbcType=INTEGER}, #{avname,jdbcType=VARCHAR}, #{avplace,jdbcType=VARCHAR}, 
+      #{avstime,jdbcType=DATE}, #{avpic,jdbcType=VARCHAR}, #{avdetail,jdbcType=VARCHAR}, 
+      #{avetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lip.pojo.Activityinfo" >
+    insert into activityinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="avid != null" >
+        avid,
+      </if>
+      <if test="avname != null" >
+        avname,
+      </if>
+      <if test="avplace != null" >
+        avplace,
+      </if>
+      <if test="avstime != null" >
+        avstime,
+      </if>
+      <if test="avpic != null" >
+        avpic,
+      </if>
+      <if test="avdetail != null" >
+        avdetail,
+      </if>
+      <if test="avetime != null" >
+        avetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="avid != null" >
+        #{avid,jdbcType=INTEGER},
+      </if>
+      <if test="avname != null" >
+        #{avname,jdbcType=VARCHAR},
+      </if>
+      <if test="avplace != null" >
+        #{avplace,jdbcType=VARCHAR},
+      </if>
+      <if test="avstime != null" >
+        #{avstime,jdbcType=DATE},
+      </if>
+      <if test="avpic != null" >
+        #{avpic,jdbcType=VARCHAR},
+      </if>
+      <if test="avdetail != null" >
+        #{avdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="avetime != null" >
+        #{avetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lip.pojo.ActivityinfoExample" resultType="java.lang.Integer" >
+    select count(*) from activityinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update activityinfo
+    <set >
+      <if test="record.avid != null" >
+        avid = #{record.avid,jdbcType=INTEGER},
+      </if>
+      <if test="record.avname != null" >
+        avname = #{record.avname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avplace != null" >
+        avplace = #{record.avplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avstime != null" >
+        avstime = #{record.avstime,jdbcType=DATE},
+      </if>
+      <if test="record.avpic != null" >
+        avpic = #{record.avpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avdetail != null" >
+        avdetail = #{record.avdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avetime != null" >
+        avetime = #{record.avetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update activityinfo
+    set avid = #{record.avid,jdbcType=INTEGER},
+      avname = #{record.avname,jdbcType=VARCHAR},
+      avplace = #{record.avplace,jdbcType=VARCHAR},
+      avstime = #{record.avstime,jdbcType=DATE},
+      avpic = #{record.avpic,jdbcType=VARCHAR},
+      avdetail = #{record.avdetail,jdbcType=VARCHAR},
+      avetime = #{record.avetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lip.pojo.Activityinfo" >
+    update activityinfo
+    <set >
+      <if test="avname != null" >
+        avname = #{avname,jdbcType=VARCHAR},
+      </if>
+      <if test="avplace != null" >
+        avplace = #{avplace,jdbcType=VARCHAR},
+      </if>
+      <if test="avstime != null" >
+        avstime = #{avstime,jdbcType=DATE},
+      </if>
+      <if test="avpic != null" >
+        avpic = #{avpic,jdbcType=VARCHAR},
+      </if>
+      <if test="avdetail != null" >
+        avdetail = #{avdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="avetime != null" >
+        avetime = #{avetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where avid = #{avid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lip.pojo.Activityinfo" >
+    update activityinfo
+    set avname = #{avname,jdbcType=VARCHAR},
+      avplace = #{avplace,jdbcType=VARCHAR},
+      avstime = #{avstime,jdbcType=DATE},
+      avpic = #{avpic,jdbcType=VARCHAR},
+      avdetail = #{avdetail,jdbcType=VARCHAR},
+      avetime = #{avetime,jdbcType=TIMESTAMP}
+    where avid = #{avid,jdbcType=INTEGER}
+  </update>
+</mapper>

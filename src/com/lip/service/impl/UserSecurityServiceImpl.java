@@ -4,6 +4,7 @@ import com.lip.mapper.UserinfoMapper;
 import com.lip.pojo.Userinfo;
 import com.lip.pojo.UserinfoExample;
 import com.lip.pojo.result.RequestResult;
+import com.lip.pojo.result.UserInfoResult;
 import com.lip.service.UserSecurityServie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,17 +33,17 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
     }
 
     @Override
-    public RequestResult userLogin(String uid, String pwd) {
+    public UserInfoResult userLogin(String uid, String pwd) {
         Userinfo userinfo=null;
         try {
             userinfo = userinfoMapper.selectByPrimaryKey(uid);
         }catch (Exception e) {
-            return new RequestResult(500,"failed",e.getMessage());
+            return new UserInfoResult(500,"failed",null);
         }
         if(userinfo.getPassword().equals(pwd)){
-            return new RequestResult(200,"OK",userinfo.getAccesstoken());
+            return new UserInfoResult(200,"OK",userinfo);
         }else{
-            return new RequestResult(400,"failed","密码错误！");
+            return new UserInfoResult(400,"failed",null);
         }
     }
 

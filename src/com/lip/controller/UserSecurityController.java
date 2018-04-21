@@ -1,6 +1,7 @@
 package com.lip.controller;
 
 import com.lip.pojo.result.RequestResult;
+import com.lip.pojo.result.UserInfoResult;
 import com.lip.service.UserSecurityServie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ public class UserSecurityController {
 
     @ResponseBody
     @RequestMapping("/pwdlogin")
-    public RequestResult loginByPassword(String uid,String pwd){
+    public UserInfoResult loginByPassword(String uid, String pwd){
         return userSecurityServie.userLogin(uid,pwd);
     }
 

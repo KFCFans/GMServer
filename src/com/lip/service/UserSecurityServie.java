@@ -2,6 +2,7 @@ package com.lip.service;
 
 import com.lip.pojo.Userinfo;
 import com.lip.pojo.result.RequestResult;
+import com.lip.pojo.result.UserInfoResult;
 
 public interface UserSecurityServie {
 
@@ -9,7 +10,7 @@ public interface UserSecurityServie {
     public RequestResult userRegister(Userinfo userinfo);
 
     // 登陆
-    public RequestResult userLogin(String uid,String pwd);
+    public UserInfoResult userLogin(String uid, String pwd);
 
     // 使用Token登陆
     public RequestResult tokenLogin(String token);
