@@ -90,15 +90,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${requestScope.tklist }" var="tk">
+                <c:forEach items="${requestScope.avlist }" var="av">
                     <tr>
-                        <td>${tk.type}</td>
-                        <td>${tk.tname}</td>
-                        <td>${tk.uid}</td>
-                        <td>${tk.stime}</td>
-                        <td>${tk.status}</td>
+                        <td>${av.avname}</td>
+                        <td>${av.avplace}</td>
+                        <td>${av.avstime}</td>
                         <td>
-                            <a href="/gm/redirect/deltask?tid=${tk.tid}" onclick="return confirm('确定要删除此任务吗？');"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="/gm/redirect/delactivity?avid=${av.avid}" onclick="return confirm('确定要删除此活动吗？');"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -104,6 +104,7 @@ public class RedirectController {
     public ModelAndView gotoManageActivity(){
         ModelAndView mv=new ModelAndView();
         mv.setViewName("manageactivity");
+        mv.addObject("avlist",activityService.getActivityListForJSP());
         return mv;
     }
 
@@ -182,6 +183,15 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:addactivity");
         activityService.releaseActivity(avname, avplace, avstime, avetime, avdetail, avpic);
+        return mv;
+    }
+
+    // 删除活动
+    @RequestMapping("/delactivity")
+    public ModelAndView delActivity(int avid){
+        activityService.delActivity(avid);
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("redirect:manageactivity");
         return mv;
     }
 }

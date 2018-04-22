@@ -189,7 +189,7 @@
 
     // 时间选择器
     $('.form_datetime').datetimepicker({
-        //language:  'fr',
+        //language:  'zh-CN',
         format:'yyyy-mm-dd hh:ii',
         weekStart: 1,
         todayBtn:  1,
