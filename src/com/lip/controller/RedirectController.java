@@ -22,21 +22,18 @@ public class RedirectController {
 
     @Autowired
     public FeedBackService feedBackService;
-
     @Autowired
     public UserSecurityServie userSecurityServie;
-
     @Autowired
     public UserInfoService userInfoService;
-
     @Autowired
     public TaskService taskService;
-
     @Autowired
     public AreaService areaService;
-
     @Autowired
     public PlantService plantService;
+    @Autowired
+    public ActivityService activityService;
 
     @RequestMapping("/login")
     public ModelAndView loginbyJSP(String username,String password){
@@ -176,6 +173,15 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:response");
         feedBackService.readFeedBack(fid);
+        return mv;
+    }
+
+    // 发布活动
+    @RequestMapping("/newactivity")
+    public ModelAndView newActivity(String avname, String avplace, String avstime, String avetime, String avdetail, String avpic){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("redirect:addactivity");
+        activityService.releaseActivity(avname, avplace, avstime, avetime, avdetail, avpic);
         return mv;
     }
 }

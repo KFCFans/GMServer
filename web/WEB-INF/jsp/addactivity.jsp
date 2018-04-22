@@ -92,7 +92,7 @@
                 </li>
             </ul>
 
-                <form action="#" method="get" onsubmit="return dealForm()">
+                <form action="/gm/redirect/newactivity" method="post" onsubmit="return dealForm()">
                     <div class="form-group">
                         <label for="avname_id">活动名称</label>
                         <input type="text" name="avname" id="avname_id" class="form-control">
@@ -141,7 +141,7 @@
                     <!-- 隐藏控件，用来提交图片名称-->
                     <input type="text" name="avpic" id="avpic" value="default" class="hidden">
                     <input type="text" name="avstime" id="avstime" class="hidden">
-                    <input type="text" name="avstime" id="avetime" class="hidden">
+                    <input type="text" name="avetime" id="avetime" class="hidden">
 
                     <button type="submit" class="btn btn-default pull-right">发布</button>
                 </form>
