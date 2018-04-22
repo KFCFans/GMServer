@@ -105,6 +105,7 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         mv.setViewName("manageactivity");
         mv.addObject("avlist",activityService.getActivityListForJSP());
+
         return mv;
     }
 
@@ -138,6 +139,7 @@ public class RedirectController {
         userinfo.setPriority(1);
         userSecurityServie.userRegister(userinfo);
         mv.setViewName("redirect:user");
+        mv.addObject("msg","addsuccess");
         return mv;
     }
 
@@ -146,6 +148,7 @@ public class RedirectController {
     public ModelAndView delWorker(String uid){
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:user");
+        mv.addObject("msg","delsuccess");
         userSecurityServie.delWorker(uid);
         return mv;
     }
@@ -155,6 +158,7 @@ public class RedirectController {
     public ModelAndView delTask(int tid){
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:task");
+        mv.addObject("msg","success");
         taskService.delTask(tid);
         return mv;
     }
@@ -164,6 +168,7 @@ public class RedirectController {
     public ModelAndView newTask(Taskinfo taskinfo,int lasttime){
         ModelAndView mv=new ModelAndView();
         mv.setViewName("redirect:addtask");
+        mv.addObject("msg","success");
         taskService.newTask(taskinfo,lasttime);
         return mv;
     }
@@ -181,6 +186,7 @@ public class RedirectController {
     @RequestMapping("/newactivity")
     public ModelAndView newActivity(String avname, String avplace, String avstime, String avetime, String avdetail, String avpic){
         ModelAndView mv=new ModelAndView();
+        mv.addObject("msg","success");
         mv.setViewName("redirect:addactivity");
         activityService.releaseActivity(avname, avplace, avstime, avetime, avdetail, avpic);
         return mv;
@@ -191,6 +197,7 @@ public class RedirectController {
     public ModelAndView delActivity(int avid){
         activityService.delActivity(avid);
         ModelAndView mv=new ModelAndView();
+        mv.addObject("msg","success");
         mv.setViewName("redirect:manageactivity");
         return mv;
     }

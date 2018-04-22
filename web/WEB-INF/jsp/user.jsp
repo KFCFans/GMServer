@@ -10,6 +10,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String msg=request.getParameter("msg");
 %>
 <html>
 <head>
@@ -67,6 +68,17 @@
 </nav>
 
 <div class="container">
+
+    <div id="delAlert" class="alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>成功！</strong>删除员工成功。
+    </div>
+
+    <div id="addAlert" class="alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>成功！</strong>添加员工成功。
+    </div>
+
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
@@ -156,6 +168,16 @@
                 return false;
             }
             return true;
+        }
+
+        // 控制回显
+        var msg="<%= msg%>";
+        if(msg=="delsuccess"){
+            $("#delAlert").attr("class","alert alert-success");
+            setTimeout("$('#delAlert').alert('close');",2000);
+        }else if(msg=="addsuccess"){
+            $("#addAlert").attr("class","alert alert-success");
+            setTimeout("$('#addAlert').alert('close');",2000);
         }
     </script>
 </div>

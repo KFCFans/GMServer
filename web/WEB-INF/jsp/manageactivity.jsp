@@ -10,6 +10,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String msg= (String) request.getParameter("msg");
 %>
 <html>
 <head>
@@ -63,6 +64,12 @@
 <!--导航-->
 
 <div class="container">
+
+    <div id="successAlert" class="alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>成功！</strong>删除活动成功。
+    </div>
+
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
@@ -109,5 +116,17 @@
 <script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    // 巧妙的jsp向js传值方式
+    var msg="<%= msg%>";
+
+    if(msg=="success"){
+        $("#successAlert").attr("class","alert alert-success");
+        setTimeout("$('#successAlert').alert('close');",2000);
+    }
+
+</script>
 </body>
 </html>

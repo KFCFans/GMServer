@@ -10,6 +10,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String msg=request.getParameter("msg");
 %>
 <html>
 <head>
@@ -74,6 +75,12 @@
 <!--导航-->
 
 <div class="container">
+
+    <div id="successAlert" class="alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>成功！</strong>发布活动成功。
+    </div>
+
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
@@ -214,6 +221,14 @@
         $("#avstime").val(sdate.getTime());
         $("#avetime").val(edate.getTime());
         return true;
+    }
+
+    // 上一次执行结果
+    var msg="<%= msg%>";
+
+    if(msg=="success"){
+        $("#successAlert").attr("class","alert alert-success");
+        setTimeout("$('#successAlert').alert('close');",2000);
     }
 </script>
 
