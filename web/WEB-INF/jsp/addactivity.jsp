@@ -100,14 +100,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="avpic_id">活动图片</label>
-                        <input type="file" name="avpic" class="file" data-show-preview="false" id="avpic_id" data-allowed-file-extensions='["jpg","png"]'>
+                        <label for="file">活动图片</label>
+                        <input type="file" name="file" class="file" data-show-preview="false" id="file">
                     </div>
 
                     <div class="form-group">
                         <label for="avdetail_id">活动详情</label>
                         <textarea class="form-control" rows="5" cols="10" placeholder="请输入活动详情" id="avdetail_id" name="avdetail"></textarea>
                     </div>
+
+                    <<input type="text" name="avpic" id="avpic" value="default" class="hidden">
 
                     <button type="submit" class="btn btn-default pull-right">发布</button>
                 </form>
@@ -118,34 +120,37 @@
 
 <script type="text/javascript">
 
-    function initFileInput(ctrlName,uploadUrl) {
-        var control = $('#'+ctrlName);
-        control.fileinput({
-            language: 'zh', //设置语言
-            uploadUrl: uploadUrl,  //上传地址
-            showUpload: false, //是否显示上传按钮
-            showRemove:true,
-            dropZoneEnabled: false,
-            showCaption: true,//是否显示标题
-            allowedPreviewTypes: ['image'],
-            allowedFileTypes: ['image'],
-            allowedFileExtensions:  ['jpg', 'png'],
-            maxFileSize : 2000,
-            maxFileCount: 1,
+    $("#file").fileinput({
+        uploadUrl: "http://localhost:8080/gm/upload/activity", //上传的地址
+        allowedFileExtensions: ['jpg', 'png'],//接收的文件后缀
+        //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
+        uploadAsync: true, //默认异步上传
+        showUpload: true, //是否显示上传按钮
+        showRemove : true, //显示移除按钮
+        showPreview : true, //是否显示预览
+        showCaption: true,//是否显示标题
+        browseClass: "btn btn-primary", //按钮样式
+        dropZoneEnabled: false,//是否显示拖拽区域
+        //minImageWidth: 50, //图片的最小宽度
+        //minImageHeight: 50,//图片的最小高度
+        //maxImageWidth: 1000,//图片的最大宽度
+        //maxImageHeight: 1000,//图片的最大高度
+        //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+        //minFileCount: 0,
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        enctype: 'multipart/form-data',
+        validateInitialCount:true,
+    });
+    //异步上传失败结果处理
+    $('#file').on('fileerror', function(event, data, msg) {
+        alert("上传失败，请重新上传图片！");
 
-        }).on("filebatchselected", function(event, files) {
-            $(this).fileinput("upload");
-        })
-            .on("fileuploaded", function(event, data) {
-                $("#path").attr("value",data.response);
-            });
-    }
-
-    $(function () {
-        var path="${base}/admin/product/upload.htm";
-        initFileInput("file",path);
-
-    })
+    });
+    //异步上传成功结果处理
+    $("#file").on("fileuploaded", function (event, data, previewId, index) {
+        var filename = data.response;
+        $('#avpic').val(filename);//拿到后台传回来的id，给图片的id赋值序列化表单用
+    });
 
 </script>
 
