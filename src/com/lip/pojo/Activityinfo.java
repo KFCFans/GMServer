@@ -17,6 +17,8 @@ public class Activityinfo {
 
     private Date avetime;
 
+    private Integer avstatus;
+
     public Integer getAvid() {
         return avid;
     }
@@ -71,5 +73,13 @@ public class Activityinfo {
 
     public void setAvetime(Date avetime) {
         this.avetime = avetime;
+    }
+
+    public Integer getAvstatus() {
+        return avstatus;
+    }
+
+    public void setAvstatus(Integer avstatus) {
+        this.avstatus = avstatus;
     }
 }

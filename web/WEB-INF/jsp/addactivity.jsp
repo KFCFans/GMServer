@@ -92,7 +92,7 @@
                 </li>
             </ul>
 
-                <form action="#" method="get">
+                <form action="#" method="get" onsubmit="return dealForm()">
                     <div class="form-group">
                         <label for="avname_id">活动名称</label>
                         <input type="text" name="avname" id="avname_id" class="form-control">
@@ -108,8 +108,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>活动开始时间</label>
-                                <div class="input-group date form_datetime col-md-12" data-date="2018-04-22T08:00:00Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                                    <input class="form-control" size="16" type="text" value="" readonly style="background-color: #ffffff">
+                                <div class="input-group date form_datetime col-md-12">
+                                    <input id="stimelabel" class="form-control" size="16" type="text" readonly style="background-color: #ffffff">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                 </div>
@@ -119,8 +119,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>活动结束时间</label>
-                                <div class="input-group date form_datetime col-md-12" data-date="2018-04-22T08:00:00Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                                    <input class="form-control" size="16" type="text" value="" readonly style="background-color: #ffffff">
+                                <div class="input-group date form_datetime col-md-12">
+                                    <input id="etimelabel" class="form-control" size="16" type="text" readonly style="background-color: #ffffff">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                 </div>
@@ -139,7 +139,9 @@
                     </div>
 
                     <!-- 隐藏控件，用来提交图片名称-->
-                    <<input type="text" name="avpic" id="avpic" value="default" class="hidden">
+                    <input type="text" name="avpic" id="avpic" value="default" class="hidden">
+                    <input type="text" name="avstime" id="avstime" class="hidden">
+                    <input type="text" name="avstime" id="avetime" class="hidden">
 
                     <button type="submit" class="btn btn-default pull-right">发布</button>
                 </form>
@@ -188,14 +190,31 @@
     // 时间选择器
     $('.form_datetime').datetimepicker({
         //language:  'fr',
+        format:'yyyy-mm-dd hh:ii',
         weekStart: 1,
         todayBtn:  1,
         autoclose: 1,
         todayHighlight: 1,
         startView: 2,
         forceParse: 0,
+        startDate: new Date(), // 初始日期为当天
         showMeridian: 1
     });
+
+    // 处理表单
+    function dealForm() {
+
+        // 判断时间+传输时间戳
+        var sdate=new Date($("#stimelabel").val());
+        var edate=new Date($("#etimelabel").val());
+        if(edate.getTime()<=sdate.getTime()){
+            alert("活动时间有误！");
+            return false;
+        }
+        $("#avstime").val(sdate.getTime());
+        $("#avetime").val(edate.getTime());
+        return true;
+    }
 </script>
 
 </body>
