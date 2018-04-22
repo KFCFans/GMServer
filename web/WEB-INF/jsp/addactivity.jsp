@@ -13,15 +13,19 @@
 %>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>后台管理系统</title>
     <link href="<%=basePath%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/fileinput.min.css">
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/bootstrap-datetimepicker.min.css">
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput_locale_zh.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -99,6 +103,31 @@
                         <input type="text" name="avplace" id="avplace_id" class="form-control">
                     </div>
 
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>活动开始时间</label>
+                                <div class="input-group date form_datetime col-md-12" data-date="2018-04-22T08:00:00Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                    <input class="form-control" size="16" type="text" value="" readonly style="background-color: #ffffff">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>活动结束时间</label>
+                                <div class="input-group date form_datetime col-md-12" data-date="2018-04-22T08:00:00Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                    <input class="form-control" size="16" type="text" value="" readonly style="background-color: #ffffff">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="file">活动图片</label>
                         <input type="file" name="file" class="file" data-show-preview="false" id="file">
@@ -109,6 +138,7 @@
                         <textarea class="form-control" rows="5" cols="10" placeholder="请输入活动详情" id="avdetail_id" name="avdetail"></textarea>
                     </div>
 
+                    <!-- 隐藏控件，用来提交图片名称-->
                     <<input type="text" name="avpic" id="avpic" value="default" class="hidden">
 
                     <button type="submit" class="btn btn-default pull-right">发布</button>
@@ -121,12 +151,13 @@
 <script type="text/javascript">
 
     $("#file").fileinput({
+        language:'en',
         uploadUrl: "http://localhost:8080/gm/upload/activity", //上传的地址
         allowedFileExtensions: ['jpg', 'png'],//接收的文件后缀
         //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
         uploadAsync: true, //默认异步上传
-        showUpload: true, //是否显示上传按钮
-        showRemove : true, //显示移除按钮
+        showUpload: false, //是否显示上传按钮
+        showRemove : false, //显示移除按钮
         showPreview : true, //是否显示预览
         showCaption: true,//是否显示标题
         browseClass: "btn btn-primary", //按钮样式
@@ -140,6 +171,8 @@
         maxFileCount: 1, //表示允许同时上传的最大文件个数
         enctype: 'multipart/form-data',
         validateInitialCount:true,
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload");
     });
     //异步上传失败结果处理
     $('#file').on('fileerror', function(event, data, msg) {
@@ -149,9 +182,20 @@
     //异步上传成功结果处理
     $("#file").on("fileuploaded", function (event, data, previewId, index) {
         var filename = data.response;
-        $('#avpic').val(filename);//拿到后台传回来的id，给图片的id赋值序列化表单用
+        $('#avpic').val(filename);//拿到后台传回来的id，给图片的value赋值序列化表单用
     });
 
+    // 时间选择器
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
 </script>
 
 </body>
