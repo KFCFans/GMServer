@@ -19,11 +19,27 @@ public class UserSecurityServiceImpl implements UserSecurityServie{
     @Autowired
     private UserinfoMapper userinfoMapper;
 
+    // 权限0为管理员，1为员工，2为学生
     @Override
-    public RequestResult userRegister(Userinfo userinfo) {
+    public RequestResult workerRegister(Userinfo userinfo) {
         String token = UUID.randomUUID().toString();
         userinfo.setAccesstoken(token);
+        userinfo.setPriority(1);
         userinfo.setAchievement(100);
+        try {
+            userinfoMapper.insert(userinfo);
+        }catch (Exception e){
+            return new RequestResult(500,"failed","用户已注册！");
+        }
+        return new RequestResult(200,"OK",token);
+    }
+
+    @Override
+    public RequestResult studentRegister(Userinfo userinfo) {
+        String token = UUID.randomUUID().toString();
+        userinfo.setAccesstoken(token);
+        userinfo.setPriority(2);
+        userinfo.setAchievement(0);
         try {
             userinfoMapper.insert(userinfo);
         }catch (Exception e){

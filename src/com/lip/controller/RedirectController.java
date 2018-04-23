@@ -137,7 +137,7 @@ public class RedirectController {
     public ModelAndView addNewWorker(Userinfo userinfo){
         ModelAndView mv=new ModelAndView();
         userinfo.setPriority(1);
-        userSecurityServie.userRegister(userinfo);
+        userSecurityServie.workerRegister(userinfo);
         mv.setViewName("redirect:user");
         mv.addObject("msg","addsuccess");
         return mv;

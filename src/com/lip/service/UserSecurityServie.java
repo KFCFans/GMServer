@@ -6,8 +6,11 @@ import com.lip.pojo.result.UserInfoResult;
 
 public interface UserSecurityServie {
 
-    // 注册
-    public RequestResult userRegister(Userinfo userinfo);
+    // 注册（注册为员工）
+    public RequestResult workerRegister(Userinfo userinfo);
+
+    // 注册（普通学生注册）
+    public RequestResult studentRegister(Userinfo userinfo);
 
     // 登陆
     public UserInfoResult userLogin(String uid, String pwd);
