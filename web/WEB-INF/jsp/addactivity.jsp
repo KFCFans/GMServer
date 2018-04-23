@@ -19,14 +19,6 @@
     <link href="<%=basePath%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/fileinput.min.css">
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/bootstrap-datetimepicker.min.css">
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-    <script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-    <script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput_locale_zh.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -157,6 +149,14 @@
     </div>
 </div>
 
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput_locale_zh.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
 
     $("#file").fileinput({

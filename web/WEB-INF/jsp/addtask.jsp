@@ -16,6 +16,7 @@
 <head>
     <title>后台管理系统</title>
     <link href="<%=basePath%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/fileinput.min.css">
 </head>
 <body>
 
@@ -134,13 +135,21 @@
 
                     <div class="form-group">
                         <label for="tlasttime_id">任务时间</label>
-                        <input type="number" class="form-control" name="lasttime" id="tlasttime_id" placeholder="请输入任务时间">
+                        <input type="number" class="form-control" name="lasttime" id="tlasttime_id" placeholder="请输入执行任务天数">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">任务图片</label>
+                        <input type="file" name="file" class="file" data-show-preview="false" id="file">
                     </div>
 
                     <div class="form-group">
                         <label for="detail_id">任务详情</label>
                         <textarea class="form-control" rows="8" cols="10" placeholder="请输入任务详情" id="detail_id" name="tdetail"></textarea>
                     </div>
+
+                    <!-- 隐藏控件，用来提交图片名称-->
+                    <input type="text" name="tpic" id="tpic" value="default" class="hidden">
 
                     <button type="submit" class="btn btn-default pull-right">发布任务</button>
                 </form>
@@ -151,12 +160,50 @@
 <script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput_locale_zh.js"></script>
 <script type="text/javascript">
     var msg="<%= msg%>";
     if(msg=="success"){
         $("#successAlert").attr("class","alert alert-success");
         setTimeout("$('#successAlert').alert('close');",2000);
     }
+
+    // 图片上传
+    $("#file").fileinput({
+        language:'en',
+        uploadUrl: "http://localhost:8080/gm/upload/task", //上传的地址
+        allowedFileExtensions: ['jpg', 'png'],//接收的文件后缀
+        //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
+        uploadAsync: true, //默认异步上传
+        showUpload: false, //是否显示上传按钮
+        showRemove : false, //显示移除按钮
+        showPreview : true, //是否显示预览
+        showCaption: true,//是否显示标题
+        browseClass: "btn btn-primary", //按钮样式
+        dropZoneEnabled: false,//是否显示拖拽区域
+        //minImageWidth: 50, //图片的最小宽度
+        //minImageHeight: 50,//图片的最小高度
+        //maxImageWidth: 1000,//图片的最大宽度
+        //maxImageHeight: 1000,//图片的最大高度
+        //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+        //minFileCount: 0,
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        enctype: 'multipart/form-data',
+        validateInitialCount:true,
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload");
+    });
+    //异步上传失败结果处理
+    $('#file').on('fileerror', function(event, data, msg) {
+        alert("上传失败，请重新上传图片！");
+
+    });
+    //异步上传成功结果处理
+    $("#file").on("fileuploaded", function (event, data, previewId, index) {
+        var filename = data.response;
+        $('#tpic').val(filename);//拿到后台传回来的id，给图片的value赋值序列化表单用
+    });
 </script>
 </body>
 </html>

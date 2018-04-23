@@ -33,6 +33,23 @@ public class UploadController {
         return filename;
     }
 
+    // 上传任务图片
+    @RequestMapping("/task")
+    @ResponseBody
+    public String uploadTaskLogo(@RequestParam("file") CommonsMultipartFile file){
+
+        //文件名
+        String filename = Long.toString(System.currentTimeMillis());
+        String path = "D:\\GraduationProject\\GMResource\\task";
+
+        try {
+            uploadFile(filename,path,file);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return filename;
+    }
+
     // 保存文件方法
     void uploadFile(String filename,String path,CommonsMultipartFile file) throws Exception{
 
