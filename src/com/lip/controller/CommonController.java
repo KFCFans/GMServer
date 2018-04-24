@@ -1,7 +1,9 @@
 package com.lip.controller;
 
+import com.lip.pojo.result.ActivityListResult;
 import com.lip.pojo.result.AreaListResult;
 import com.lip.pojo.result.ViewpagerListResult;
+import com.lip.service.ActivityService;
 import com.lip.service.AreaService;
 import com.lip.service.ViewpagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class CommonController {
     @Autowired
     private ViewpagerService viewpagerService;
 
+    @Autowired
+    private ActivityService activityService;
+
     @RequestMapping("/arealist")
     @ResponseBody
     public AreaListResult getAreaListInfo() {
@@ -30,4 +35,11 @@ public class CommonController {
     public ViewpagerListResult getViewPagerList(){
         return viewpagerService.getViewPager();
     }
+
+    @RequestMapping("/avlist")
+    @ResponseBody
+    public ActivityListResult getActivityList(){
+        return activityService.getActivityList();
+    }
+
 }
