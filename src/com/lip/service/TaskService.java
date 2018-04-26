@@ -32,4 +32,7 @@ public interface TaskService {
 
     // 删除任务(JSP)
     public RequestResult delTask(int tid);
+
+    // 接受任务
+    public RequestResult acceptTask(int tid);
 }

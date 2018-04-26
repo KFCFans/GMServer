@@ -11,7 +11,7 @@ public class MyTaskInfo {
     // 负责人手机号
     private String uid;
 
-    // 任务状态 0未完成 1延期  2完成
+    // 任务状态 0未接受（刚发布） 1未完成（已接受）  2完成
     private String status;
 
     // 任务类型 0维护 1移植 2新增 3删除

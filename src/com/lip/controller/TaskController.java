@@ -53,4 +53,10 @@ public class TaskController {
         return taskService.saveTaskFinished(uid, iid, tid);
     }
 
+    @ResponseBody
+    @RequestMapping("/accept")
+    public RequestResult acceptTask(int tid){
+        return taskService.acceptTask(tid);
+    }
+
 }

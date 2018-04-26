@@ -122,7 +122,7 @@ public class TaskServiceImpl implements TaskService {
         TaskinfoExample example=new TaskinfoExample();
 
         String area[]={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
-        String status[]={"未完成","延期","已完成"};
+        String status[]={"未接受","未完成","已完成"};
         String types[]={"维护","移植","新增","删除"};
         try {
             list=taskinfoMapper.selectByExample(example);
@@ -156,6 +156,19 @@ public class TaskServiceImpl implements TaskService {
             return new RequestResult(500,"failed",e.getMessage());
         }
         return new RequestResult(200,"OK","删除成功！");
+    }
+
+    @Override
+    public RequestResult acceptTask(int tid) {
+        Taskinfo taskinfo=new Taskinfo();
+        taskinfo.setTid(tid);
+        taskinfo.setTstatus(1);
+        try {
+            taskinfoMapper.updateByPrimaryKeySelective(taskinfo);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","成功！");
     }
 
     private void finishedTask(int tid) throws Exception{
