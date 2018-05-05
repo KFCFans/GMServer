@@ -12,6 +12,9 @@ public interface TaskService {
     // 获取用户未完成任务
     public TaskListResult getTaskList(String uid);
 
+    // 获取用户历史任务
+    public TaskListResult getHistoryTaskList(String uid);
+
     // 新建任务
     public RequestResult newTask(Taskinfo taskinfo,int lasttime);
 

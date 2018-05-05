@@ -24,6 +24,12 @@ public class TaskController {
     }
 
     @ResponseBody
+    @RequestMapping("/history")
+    public TaskListResult getHistoryTaskList(String uid){
+        return taskService.getHistoryTaskList(uid);
+    }
+
+    @ResponseBody
     @ResourceMapping("/new")
     public RequestResult newTask(Taskinfo taskinfo,int lasttime){
         return taskService.newTask(taskinfo,lasttime);

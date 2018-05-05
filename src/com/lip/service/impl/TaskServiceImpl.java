@@ -41,6 +41,21 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public TaskListResult getHistoryTaskList(String uid) {
+        TaskinfoExample example=new TaskinfoExample();
+        TaskinfoExample.Criteria criteria=example.createCriteria();
+        criteria.andUidEqualTo(uid);
+        criteria.andTstatusEqualTo(2);
+        List<Taskinfo> data=null;
+        try {
+            data=taskinfoMapper.selectByExample(example);
+        }catch (Exception e){
+            return new TaskListResult(500,"failed",null);
+        }
+        return new TaskListResult(200,"OK",data);
+    }
+
+    @Override
     public RequestResult newTask(Taskinfo taskinfo,int lasttime) {
         taskinfo.setStime(new Date());
         taskinfo.setTstatus(0);
