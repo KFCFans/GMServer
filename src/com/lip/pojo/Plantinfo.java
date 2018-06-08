@@ -11,6 +11,12 @@ public class Plantinfo {
 
     private String pdetail;
 
+    private String ptype;
+
+    private String plhxg;
+
+    private String pxyfb;
+
     public Integer getPid() {
         return pid;
     }
@@ -49,5 +55,29 @@ public class Plantinfo {
 
     public void setPdetail(String pdetail) {
         this.pdetail = pdetail == null ? null : pdetail.trim();
+    }
+
+    public String getPtype() {
+        return ptype;
+    }
+
+    public void setPtype(String ptype) {
+        this.ptype = ptype == null ? null : ptype.trim();
+    }
+
+    public String getPlhxg() {
+        return plhxg;
+    }
+
+    public void setPlhxg(String plhxg) {
+        this.plhxg = plhxg == null ? null : plhxg.trim();
+    }
+
+    public String getPxyfb() {
+        return pxyfb;
+    }
+
+    public void setPxyfb(String pxyfb) {
+        this.pxyfb = pxyfb == null ? null : pxyfb.trim();
     }
 }

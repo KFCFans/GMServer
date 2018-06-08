@@ -39,8 +39,8 @@
                 <li><a href="/gm/redirect/user"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
                 <li><a href="/gm/redirect/task" class="active"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
                 <li><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
-                <li class="active"><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
-                <li><a href="/gm/redirect/manageplant"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;&nbsp;植物管理</a></li>
+                <li><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
+                <li class="active"><a href="/gm/redirect/manageplant"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;&nbsp;植物管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -68,43 +68,45 @@
 
     <div id="successAlert" class="alert alert-success hidden">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>成功！</strong>删除活动成功。
+        <strong>成功！</strong>删除成功。
     </div>
 
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/manageactivity" class="list-group-item active">活动管理</a>
-                <a href="/gm/redirect/addactivity" class="list-group-item">发布活动</a>
+                <a href="/gm/redirect/manageaplant" class="list-group-item active">植物管理</a>
+                <a href="/gm/redirect/addplant" class="list-group-item">新增类别</a>
             </div>
         </div>
         <div class="col-md-10">
 
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="/gm/redirect/manageactivity">活动管理</a>
+                    <a href="/gm/redirect/manageaplant">植物管理</a>
                 </li>
                 <li>
-                    <a href="/gm/redirect/addactivity">发布活动</a>
+                    <a href="/gm/redirect/addplant">新增类别</a>
                 </li>
             </ul>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>活动名称</th>
-                    <th>活动地点</th>
-                    <th>开始时间</th>
+                    <th>植物名称</th>
+                    <th>学名</th>
+                    <th>科属</th>
+                    <th>校园分布</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${requestScope.avlist }" var="av">
+                <c:forEach items="${requestScope.plist }" var="plant">
                     <tr>
-                        <td>${av.avname}</td>
-                        <td>${av.avplace}</td>
-                        <td>${av.avstime}</td>
+                        <td>${plant.pname}</td>
+                        <td>${plant.psname}</td>
+                        <td>${plant.ptype}</td>
+                        <td>${plant.pxyfb}</td>
                         <td>
-                            <a href="/gm/redirect/delactivity?avid=${av.avid}" onclick="return confirm('确定要删除此活动吗？');"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="/gm/redirect/delplant?pid=${plant.pid}" onclick="return confirm('确定要删除此类别吗？');"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </c:forEach>

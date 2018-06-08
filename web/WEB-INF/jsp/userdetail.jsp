@@ -83,8 +83,8 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="#" class="list-group-item active">员工管理</a>
-                <a href="#" class="list-group-item">员工查询</a>
+                <a href="#" class="list-group-item">员工管理</a>
+                <a href="#" class="list-group-item active">员工查询</a>
                 <a href="" class="list-group-item" role="button" data-toggle="modal" data-target="#addUserModal">添加员工</a>
             </div>
         </div>
@@ -111,7 +111,7 @@
                         <td>${mb.gender}</td>
                         <td>${mb.achievement}</td>
                         <td>
-                           <a href="/gm/redirect/delworker?uid=${mb.uid}" onclick="return confirm('确定要删除此员工吗？');"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="/gm/redirect/delworker?uid=${mb.uid}" onclick="return confirm('确定要删除此员工吗？');"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -147,11 +147,11 @@
                             </select>
                         </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">提交</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
                 </form>
             </div>
         </div>

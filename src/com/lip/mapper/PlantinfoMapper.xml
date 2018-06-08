@@ -7,6 +7,9 @@
     <result column="pimg" property="pimg" jdbcType="VARCHAR" />
     <result column="psname" property="psname" jdbcType="VARCHAR" />
     <result column="pdetail" property="pdetail" jdbcType="VARCHAR" />
+    <result column="ptype" property="ptype" jdbcType="VARCHAR" />
+    <result column="plhxg" property="plhxg" jdbcType="VARCHAR" />
+    <result column="pxyfb" property="pxyfb" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    pid, pname, pimg, psname, pdetail
+    pid, pname, pimg, psname, pdetail, ptype, plhxg, pxyfb
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lip.pojo.PlantinfoExample" >
     select
@@ -101,9 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.lip.pojo.Plantinfo" >
     insert into plantinfo (pid, pname, pimg, 
-      psname, pdetail)
+      psname, pdetail, ptype, 
+      plhxg, pxyfb)
     values (#{pid,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, #{pimg,jdbcType=VARCHAR}, 
-      #{psname,jdbcType=VARCHAR}, #{pdetail,jdbcType=VARCHAR})
+      #{psname,jdbcType=VARCHAR}, #{pdetail,jdbcType=VARCHAR}, #{ptype,jdbcType=VARCHAR}, 
+      #{plhxg,jdbcType=VARCHAR}, #{pxyfb,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lip.pojo.Plantinfo" >
     insert into plantinfo
@@ -123,6 +128,15 @@
       <if test="pdetail != null" >
         pdetail,
       </if>
+      <if test="ptype != null" >
+        ptype,
+      </if>
+      <if test="plhxg != null" >
+        plhxg,
+      </if>
+      <if test="pxyfb != null" >
+        pxyfb,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="pid != null" >
@@ -139,6 +153,15 @@
       </if>
       <if test="pdetail != null" >
         #{pdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ptype != null" >
+        #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="plhxg != null" >
+        #{plhxg,jdbcType=VARCHAR},
+      </if>
+      <if test="pxyfb != null" >
+        #{pxyfb,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +189,15 @@
       <if test="record.pdetail != null" >
         pdetail = #{record.pdetail,jdbcType=VARCHAR},
       </if>
+      <if test="record.ptype != null" >
+        ptype = #{record.ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plhxg != null" >
+        plhxg = #{record.plhxg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxyfb != null" >
+        pxyfb = #{record.pxyfb,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +209,10 @@
       pname = #{record.pname,jdbcType=VARCHAR},
       pimg = #{record.pimg,jdbcType=VARCHAR},
       psname = #{record.psname,jdbcType=VARCHAR},
-      pdetail = #{record.pdetail,jdbcType=VARCHAR}
+      pdetail = #{record.pdetail,jdbcType=VARCHAR},
+      ptype = #{record.ptype,jdbcType=VARCHAR},
+      plhxg = #{record.plhxg,jdbcType=VARCHAR},
+      pxyfb = #{record.pxyfb,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +232,15 @@
       <if test="pdetail != null" >
         pdetail = #{pdetail,jdbcType=VARCHAR},
       </if>
+      <if test="ptype != null" >
+        ptype = #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="plhxg != null" >
+        plhxg = #{plhxg,jdbcType=VARCHAR},
+      </if>
+      <if test="pxyfb != null" >
+        pxyfb = #{pxyfb,jdbcType=VARCHAR},
+      </if>
     </set>
     where pid = #{pid,jdbcType=INTEGER}
   </update>
@@ -205,7 +249,10 @@
     set pname = #{pname,jdbcType=VARCHAR},
       pimg = #{pimg,jdbcType=VARCHAR},
       psname = #{psname,jdbcType=VARCHAR},
-      pdetail = #{pdetail,jdbcType=VARCHAR}
+      pdetail = #{pdetail,jdbcType=VARCHAR},
+      ptype = #{ptype,jdbcType=VARCHAR},
+      plhxg = #{plhxg,jdbcType=VARCHAR},
+      pxyfb = #{pxyfb,jdbcType=VARCHAR}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
 </mapper>

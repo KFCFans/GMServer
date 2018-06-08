@@ -31,6 +31,18 @@ public class PlantServiceImpl implements PlantService {
     }
 
     @Override
+    public List<Plantinfo> getPlantListForJSP() {
+        List<Plantinfo> list=null;
+        PlantinfoExample example=new PlantinfoExample();
+        try {
+            list=plantinfoMapper.selectByExample(example);
+        }catch (Exception e){
+            return null;
+        }
+        return list;
+    }
+
+    @Override
     public PlantInfoResult getPlantInfo(int pid) {
         Plantinfo plantinfo=null;
         try {
@@ -49,5 +61,15 @@ public class PlantServiceImpl implements PlantService {
             return new RequestResult(500,"failed",e.getMessage());
         }
         return new RequestResult(20,"OK","success");
+    }
+
+    @Override
+    public RequestResult delPlant(int pid) {
+        try {
+            plantinfoMapper.deleteByPrimaryKey(pid);
+        }catch (Exception e){
+            return new RequestResult(500,"failed",e.getMessage());
+        }
+        return new RequestResult(200,"OK","删除成功！");
     }
 }

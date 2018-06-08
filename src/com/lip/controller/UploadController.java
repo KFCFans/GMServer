@@ -50,6 +50,40 @@ public class UploadController {
         return filename;
     }
 
+    // 上传植物图片
+    @RequestMapping("/plant")
+    @ResponseBody
+    public String uploadPlantInfo(@RequestParam("file") CommonsMultipartFile file){
+
+        //文件名
+        String filename = Long.toString(System.currentTimeMillis());
+        String path = "D:\\GraduationProject\\GMResource\\plant";
+
+        try {
+            uploadFile(filename,path,file);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return filename;
+    }
+
+    // 上传反馈图片
+    @RequestMapping("/response")
+    @ResponseBody
+    public String uploadResponsePic(@RequestParam("file") CommonsMultipartFile file){
+
+        //文件名
+        String filename = Long.toString(System.currentTimeMillis());
+        String path = "D:\\GraduationProject\\GMResource\\response";
+
+        try {
+            uploadFile(filename,path,file);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return filename;
+    }
+
     // 保存文件方法
     void uploadFile(String filename,String path,CommonsMultipartFile file) throws Exception{
 

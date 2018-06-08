@@ -1,6 +1,7 @@
 package com.lip.controller;
 
 import com.lip.pojo.Feedback;
+import com.lip.pojo.Plantinfo;
 import com.lip.pojo.Taskinfo;
 import com.lip.pojo.Userinfo;
 import com.lip.pojo.jspbean.MyUserInfo;
@@ -116,6 +117,33 @@ public class RedirectController {
         return mv;
     }
 
+    // 植物管理页面
+    @RequestMapping("/manageplant")
+    public ModelAndView gotoManagePlant(){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("manageplant");
+        modelAndView.addObject("plist",plantService.getPlantListForJSP());
+        return modelAndView;
+    }
+
+    // 添加植物页面
+    @RequestMapping("/addplant")
+    public ModelAndView gotoAddPlant(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("addplant");
+        return mv;
+    }
+
+    // 添加植物
+    @RequestMapping("/newplant")
+    public ModelAndView newActivity(Plantinfo plantinfo){
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("msg","success");
+        mv.setViewName("redirect:addplant");
+        plantService.addPlantInfo(plantinfo);
+        return mv;
+    }
+
     @RequestMapping("/main")
     public ModelAndView gotoMain(){
         ModelAndView mv=new ModelAndView();
@@ -199,6 +227,16 @@ public class RedirectController {
         ModelAndView mv=new ModelAndView();
         mv.addObject("msg","success");
         mv.setViewName("redirect:manageactivity");
+        return mv;
+    }
+
+    // 删除植物类别
+    @RequestMapping("/delplant")
+    public ModelAndView delPlant(int pid){
+        plantService.delPlant(pid);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("msg","success");
+        mv.setViewName("redirect:manageplant");
         return mv;
     }
 }

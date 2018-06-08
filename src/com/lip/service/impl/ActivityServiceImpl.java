@@ -29,7 +29,6 @@ public class ActivityServiceImpl implements ActivityService {
         activityinfo.setAvdetail(avdetail);
         activityinfo.setAvpic(avpic);
         activityinfo.setAvplace(avplace);
-
         // 将时间戳转化为时间
         activityinfo.setAvstime(CommonUtil.stampToDate(avstime));
         activityinfo.setAvetime(CommonUtil.stampToDate(avetime));

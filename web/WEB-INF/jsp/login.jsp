@@ -24,6 +24,10 @@
 
     <h1 class="text-center">用户登陆</h1>
 
+    <div class="row">
+        <h4 class="text-center">江南大学绿化管理系统</h4>
+    </div>
+
     <form action="/gm/redirect/login" method="post">
         <div class="form-group">
             <label>用户名：</label>
@@ -33,7 +37,7 @@
             <label>密码：</label>
             <input type="password" class="form-control" name="password">
         </div>
-        <input class="btn btn-block btn-success" type="submit">
+        <input class="btn btn-block btn-success" type="submit" value="登陆">
     </form>
 
 </div>

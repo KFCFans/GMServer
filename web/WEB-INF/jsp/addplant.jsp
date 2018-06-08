@@ -42,8 +42,8 @@
                 <li><a href="/gm/redirect/user"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
                 <li><a href="/gm/redirect/task" class="active"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
                 <li><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
-                <li class="active"><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
-                <li><a href="/gm/redirect/manageplant"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;&nbsp;植物管理</a></li>
+                <li><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
+                <li class="active"><a href="/gm/redirect/manageplant"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;&nbsp;植物管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -71,80 +71,69 @@
 
     <div id="successAlert" class="alert alert-success hidden">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>成功！</strong>发布活动成功。
+        <strong>成功！</strong>发布成功。
     </div>
 
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/manageactivity" class="list-group-item">活动管理</a>
-                <a href="/gm/redirect/addactivity" class="list-group-item active">发布活动</a>
+                <a href="/gm/redirect/manageplant" class="list-group-item">植物管理</a>
+                <a href="/gm/redirect/addplant" class="list-group-item active">新增类别</a>
             </div>
         </div>
         <div class="col-md-10">
 
             <ul class="nav nav-tabs">
                 <li>
-                    <a href="/gm/redirect/manageactivity">活动管理</a>
+                    <a href="/gm/redirect/manageplant">植物管理</a>
                 </li>
                 <li class="active">
-                    <a href="/gm/redirect/addactivity">发布活动</a>
+                    <a href="/gm/redirect/addplant">新增类别</a>
                 </li>
             </ul>
 
-                <form action="/gm/redirect/newactivity" method="post" onsubmit="return dealForm()">
-                    <div class="form-group">
-                        <label for="avname_id">活动名称</label>
-                        <input type="text" name="avname" id="avname_id" class="form-control">
-                    </div>
+            <form action="/gm/redirect/newplant" method="post" onsubmit="return dealForm()">
+                <div class="form-group">
+                    <label for="pname_id">植物名称</label>
+                    <input type="text" name="pname" id="pname_id" class="form-control">
+                </div>
 
-                    <div class="form-group">
-                        <label for="avplace_id">活动地点</label>
-                        <input type="text" name="avplace" id="avplace_id" class="form-control">
-                    </div>
+                <div class="form-group">
+                    <label for="psname_id">植物学名</label>
+                    <input type="text" name="psname" id="psname_id" class="form-control">
+                </div>
 
-                    <div class="row">
+                <div class="form-group">
+                    <label for="ptype_id">植物科属</label>
+                    <input type="text" name="ptype" id="ptype_id" class="form-control">
+                </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>活动开始时间</label>
-                                <div class="input-group date form_datetime col-md-12">
-                                    <input id="stimelabel" class="form-control" size="16" type="text" readonly style="background-color: #ffffff">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label for="pxyfb_id">校园分布</label>
+                    <input type="text" name="pxyfb" id="pxyfb_id" class="form-control">
+                </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>活动结束时间</label>
-                                <div class="input-group date form_datetime col-md-12">
-                                    <input id="etimelabel" class="form-control" size="16" type="text" readonly style="background-color: #ffffff">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="file">植物图片</label>
+                    <input type="file" name="file" class="file" data-show-preview="false" id="file">
+                </div>
 
-                    <div class="form-group">
-                        <label for="file">活动图片</label>
-                        <input type="file" name="file" class="file" data-show-preview="false" id="file">
-                    </div>
+                <div class="form-group">
+                    <label for="plhxg_id">绿化效果</label>
+                    <textarea class="form-control" rows="5" cols="8" placeholder="请输入活动详情" id="plhxg_id" name="plhxg"></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="avdetail_id">活动详情</label>
-                        <textarea class="form-control" rows="5" cols="10" placeholder="请输入活动详情" id="avdetail_id" name="avdetail"></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="pdetail_id">植物详情</label>
+                    <textarea class="form-control" rows="5" cols="8" placeholder="请输入活动详情" id="pdetail_id" name="pdetail"></textarea>
+                </div>
 
-                    <!-- 隐藏控件，用来提交图片名称-->
-                    <input type="text" name="avpic" id="avpic" value="default" class="hidden">
-                    <input type="text" name="avstime" id="avstime" class="hidden">
-                    <input type="text" name="avetime" id="avetime" class="hidden">
+                <!-- 隐藏控件，用来提交图片名称-->
+                <input type="text" name="pimg" id="pimg" value="default" class="hidden">
 
-                    <button type="submit" class="btn btn-default pull-right">发布</button>
-                </form>
+
+                <button type="submit" class="btn btn-default pull-right">发布</button>
+            </form>
 
         </div>
     </div>
@@ -162,7 +151,7 @@
 
     $("#file").fileinput({
         language:'en',
-        uploadUrl: "http://localhost:8080/gm/upload/activity", //上传的地址
+        uploadUrl: "http://localhost:8080/gm/upload/plant", //上传的地址
         allowedFileExtensions: ['jpg', 'png'],//接收的文件后缀
         //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
         uploadAsync: true, //默认异步上传
@@ -192,35 +181,11 @@
     //异步上传成功结果处理
     $("#file").on("fileuploaded", function (event, data, previewId, index) {
         var filename = data.response;
-        $('#avpic').val(filename);//拿到后台传回来的id，给图片的value赋值序列化表单用
-    });
-
-    // 时间选择器
-    $('.form_datetime').datetimepicker({
-        //language:  'zh-CN',
-        format:'yyyy-mm-dd hh:ii',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        startDate: new Date(), // 初始日期为当天
-        showMeridian: 1
+        $('#pimg').val(filename);//拿到后台传回来的id，给图片的value赋值序列化表单用
     });
 
     // 处理表单
     function dealForm() {
-
-        // 判断时间+传输时间戳
-        var sdate=new Date($("#stimelabel").val());
-        var edate=new Date($("#etimelabel").val());
-        if(edate.getTime()<=sdate.getTime()){
-            alert("活动时间有误！");
-            return false;
-        }
-        $("#avstime").val(sdate.getTime());
-        $("#avetime").val(edate.getTime());
         return true;
     }
 

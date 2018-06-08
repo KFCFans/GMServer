@@ -42,6 +42,7 @@
                 <li><a href="/gm/redirect/task"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;任务管理</a></li>
                 <li><a href="/gm/redirect/response"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;反馈管理</a></li>
                 <li><a href="/gm/redirect/manageactivity"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;活动管理</a></li>
+                <li><a href="/gm/redirect/manageplant"><span class="glyphicon glyphicon-tree-conifer"></span>&nbsp;&nbsp;植物管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -69,7 +70,7 @@
 
     <div class="col-lg-6">
         <div class="panel panel-default">
-            <div class="panel-heading">已发布任务</div>
+            <div class="panel-heading"><strong>已发布任务</strong></div>
             <div class="panel-body">
                 <table class="table table-hover">
                     <thead>
@@ -97,7 +98,7 @@
 
     <div class="col-lg-6">
         <div class="panel panel-default">
-            <div class="panel-heading">最新反馈</div>
+            <div class="panel-heading"><strong>最新反馈</strong></div>
             <div class="panel-body">
                 <table class="table table-hover">
                     <thead>
@@ -121,7 +122,7 @@
 
     <div class="col-lg-6">
         <div class="panel panel-default">
-            <div class="panel-heading">注册员工</div>
+            <div class="panel-heading"><strong>注册员工</strong></div>
             <div class="panel-body">
                 <table class="table table-hover">
                     <thead>
@@ -147,7 +148,7 @@
 
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading">服务器状态</div>
+            <div class="panel-heading"><strong>服务器状态</strong></div>
             <div class="panel-body">
                 <p>内存使用率：40%</p>
                 <div class="progress">

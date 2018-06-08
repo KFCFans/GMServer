@@ -443,6 +443,216 @@ public class PlantinfoExample {
             addCriterion("pdetail not between", value1, value2, "pdetail");
             return (Criteria) this;
         }
+
+        public Criteria andPtypeIsNull() {
+            addCriterion("ptype is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeIsNotNull() {
+            addCriterion("ptype is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeEqualTo(String value) {
+            addCriterion("ptype =", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeNotEqualTo(String value) {
+            addCriterion("ptype <>", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeGreaterThan(String value) {
+            addCriterion("ptype >", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("ptype >=", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeLessThan(String value) {
+            addCriterion("ptype <", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeLessThanOrEqualTo(String value) {
+            addCriterion("ptype <=", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeLike(String value) {
+            addCriterion("ptype like", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeNotLike(String value) {
+            addCriterion("ptype not like", value, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeIn(List<String> values) {
+            addCriterion("ptype in", values, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeNotIn(List<String> values) {
+            addCriterion("ptype not in", values, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeBetween(String value1, String value2) {
+            addCriterion("ptype between", value1, value2, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtypeNotBetween(String value1, String value2) {
+            addCriterion("ptype not between", value1, value2, "ptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgIsNull() {
+            addCriterion("plhxg is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgIsNotNull() {
+            addCriterion("plhxg is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgEqualTo(String value) {
+            addCriterion("plhxg =", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgNotEqualTo(String value) {
+            addCriterion("plhxg <>", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgGreaterThan(String value) {
+            addCriterion("plhxg >", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgGreaterThanOrEqualTo(String value) {
+            addCriterion("plhxg >=", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgLessThan(String value) {
+            addCriterion("plhxg <", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgLessThanOrEqualTo(String value) {
+            addCriterion("plhxg <=", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgLike(String value) {
+            addCriterion("plhxg like", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgNotLike(String value) {
+            addCriterion("plhxg not like", value, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgIn(List<String> values) {
+            addCriterion("plhxg in", values, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgNotIn(List<String> values) {
+            addCriterion("plhxg not in", values, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgBetween(String value1, String value2) {
+            addCriterion("plhxg between", value1, value2, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlhxgNotBetween(String value1, String value2) {
+            addCriterion("plhxg not between", value1, value2, "plhxg");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbIsNull() {
+            addCriterion("pxyfb is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbIsNotNull() {
+            addCriterion("pxyfb is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbEqualTo(String value) {
+            addCriterion("pxyfb =", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbNotEqualTo(String value) {
+            addCriterion("pxyfb <>", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbGreaterThan(String value) {
+            addCriterion("pxyfb >", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbGreaterThanOrEqualTo(String value) {
+            addCriterion("pxyfb >=", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbLessThan(String value) {
+            addCriterion("pxyfb <", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbLessThanOrEqualTo(String value) {
+            addCriterion("pxyfb <=", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbLike(String value) {
+            addCriterion("pxyfb like", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbNotLike(String value) {
+            addCriterion("pxyfb not like", value, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbIn(List<String> values) {
+            addCriterion("pxyfb in", values, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbNotIn(List<String> values) {
+            addCriterion("pxyfb not in", values, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbBetween(String value1, String value2) {
+            addCriterion("pxyfb between", value1, value2, "pxyfb");
+            return (Criteria) this;
+        }
+
+        public Criteria andPxyfbNotBetween(String value1, String value2) {
+            addCriterion("pxyfb not between", value1, value2, "pxyfb");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
