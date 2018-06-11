@@ -9,6 +9,7 @@ import com.lip.pojo.result.FeedbackListResult;
 import com.lip.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -250,6 +251,19 @@ public class RedirectController {
         }
         mv.addObject("flist",taskService.getFinishedTaskByUid(uid));
         mv.addObject("ulist",taskService.getUnFinishedTaskByUid(uid));
+        return mv;
+    }
+
+    // 统计功能（任务统计）
+    @RequestMapping("/taskstat")
+    public ModelAndView taskSearch(String stime,String etime){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("taskstat");
+        if(stime==null||stime.equals("")||stime.length()==0){
+            return mv;
+        }
+        System.out.println("stiem:"+stime+";etiem:"+etime);
+        mv.addObject("tklist",taskService.getTaskByTimeInterval(stime,etime));
         return mv;
     }
 }

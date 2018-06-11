@@ -76,6 +76,7 @@
         <div class="col-md-2">
             <div class="list-group">
                 <a href="/gm/redirect/task" class="list-group-item">任务管理</a>
+                <a href="/gm/redirect/taskstat" class="list-group-item">任务统计</a>
                 <a href="/gm/redirect/addtask" class="list-group-item active">发布任务</a>
             </div>
         </div>
@@ -84,6 +85,9 @@
             <ul class="nav nav-tabs">
                 <li>
                     <a href="/gm/redirect/task">任务管理</a>
+                </li>
+                <li>
+                    <a href="/gm/redirect/taskstat">任务统计</a>
                 </li>
                 <li class="active">
                     <a href="/gm/redirect/addtask">发布任务</a>

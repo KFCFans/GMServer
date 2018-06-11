@@ -16,6 +16,8 @@
 <head>
     <title>后台管理系统</title>
     <link href="<%=basePath%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/fileinput.min.css">
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>/bootstrap/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
 
@@ -74,24 +76,62 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/task" class="list-group-item active">任务管理</a>
-                <a href="/gm/redirect/taskstat" class="list-group-item">任务统计</a>
+                <a href="/gm/redirect/task" class="list-group-item">任务管理</a>
+                <a href="/gm/redirect/taskstat" class="list-group-item active">任务统计</a>
                 <a href="/gm/redirect/addtask" class="list-group-item">发布任务</a>
             </div>
         </div>
         <div class="col-md-10">
 
             <ul class="nav nav-tabs">
-                <li class="active">
+                <li>
                     <a href="/gm/redirect/task">任务管理</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/gm/redirect/taskstat">任务统计</a>
                 </li>
                 <li>
                     <a href="/gm/redirect/addtask">发布任务</a>
                 </li>
             </ul>
+
+            <form action="/gm/redirect/taskstat" method="post" onsubmit="dealForm()">
+
+                <div class="row">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>开始时间</label>
+                                <div class="input-group date form_datetime col-md-12">
+                                    <input id="stimelabel" class="form-control" size="16" type="text" readonly style="background-color: #ffffff">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>结束时间</label>
+                                <div class="input-group date form_datetime col-md-12">
+                                    <input id="etimelabel" class="form-control" size="16" type="text" readonly style="background-color: #ffffff">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <button type="submit" class="btn btn-default" style="margin-top: 25px">查询</button>
+
+                </div>
+
+                <!-- 隐藏控件，用来提交图片名称-->
+                <input type="text" name="stime" id="stime" class="hidden">
+                <input type="text" name="etime" id="etime" class="hidden">
+
+            </form>
+
             <table class="table">
                 <thead>
                 <tr>
@@ -100,7 +140,6 @@
                     <th>负责人</th>
                     <th>发布时间</th>
                     <th>完成状态</th>
-                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -111,13 +150,13 @@
                         <td>${tk.uid}</td>
                         <td>${tk.stime}</td>
                         <td>${tk.status}</td>
-                        <td>
-                            <a href="/gm/redirect/deltask?tid=${tk.tid}" onclick="return confirm('确定要删除此任务吗？');"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
+
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+
+
         </div>
     </div>
 </div>
@@ -126,12 +165,49 @@
 <script src="<%=basePath%>/bootstrap/js/jquery-3.3.1.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="<%=basePath%>/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/fileinput_locale_zh.js"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=basePath%>/bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
+
+    // 时间选择器
+    $('.form_datetime').datetimepicker({
+        //language:  'zh-CN',
+        format:'yyyy-mm-dd hh:ii',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+
+        showMeridian: 1
+    });
+
+    // 处理表单
+    function dealForm() {
+
+        // 判断时间+传输时间戳
+        var sdate=new Date($("#stimelabel").val());
+        var edate=new Date($("#etimelabel").val());
+        if(edate.getTime()<=sdate.getTime()){
+            alert("活动时间有误！");
+            return false;
+        }
+        $("#stime").val(sdate.getTime());
+        $("#etime").val(edate.getTime());
+        return true;
+    }
+
+    // 上一次执行结果
     var msg="<%= msg%>";
+
     if(msg=="success"){
         $("#successAlert").attr("class","alert alert-success");
         setTimeout("$('#successAlert').alert('close');",2000);
     }
 </script>
+
 </body>
 </html>

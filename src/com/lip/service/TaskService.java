@@ -44,4 +44,7 @@ public interface TaskService {
 
     // 查询未完成任务
     public List<MyTaskInfo> getUnFinishedTaskByUid(String uid);
+
+    // 查询时间区间内任务
+    public List<MyTaskInfo> getTaskByTimeInterval(String stime,String etime);
 }

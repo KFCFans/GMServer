@@ -7,6 +7,7 @@ import com.lip.pojo.jspbean.MyTaskInfo;
 import com.lip.pojo.result.RequestResult;
 import com.lip.pojo.result.TaskListResult;
 import com.lip.service.TaskService;
+import com.lip.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -230,6 +231,41 @@ public class TaskServiceImpl implements TaskService {
         TaskinfoExample.Criteria criteria=example.createCriteria();
         criteria.andUidEqualTo(uid);
         criteria.andTstatusLessThan(2);
+        String area[]={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
+        String status[]={"未接受","未完成","已完成"};
+        String types[]={"维护","移植","新增","删除"};
+        try {
+            list=taskinfoMapper.selectByExample(example);
+        }catch (Exception e){
+            return null;
+        }
+        for(int i=0;i<list.size();i++){
+            MyTaskInfo taskInfo=new MyTaskInfo();
+            taskInfo.setTid(list.get(i).getTid());
+            taskInfo.setUid(list.get(i).getUid());
+            taskInfo.setTname(list.get(i).getTname());
+            // 地区
+            taskInfo.setArea(area[list.get(i).getAid()-1]);
+            // 状态
+            taskInfo.setStatus(status[list.get(i).getTstatus()]);
+            taskInfo.setType(types[list.get(i).getRtype()]);
+            // 时间
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+            taskInfo.setStime(simpleDateFormat.format(list.get(i).getStime()));
+
+            res.add(taskInfo);
+        }
+        return res;
+    }
+
+    @Override
+    public List<MyTaskInfo> getTaskByTimeInterval(String stime, String etime) {
+        List<Taskinfo> list;
+        List<MyTaskInfo> res=new ArrayList<>();
+        TaskinfoExample example=new TaskinfoExample();
+        TaskinfoExample.Criteria criteria=example.createCriteria();
+        criteria.andStimeGreaterThanOrEqualTo(CommonUtil.stampToDate(stime));
+        criteria.andStimeLessThanOrEqualTo(CommonUtil.stampToDate(etime));
         String area[]={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
         String status[]={"未接受","未完成","已完成"};
         String types[]={"维护","移植","新增","删除"};
