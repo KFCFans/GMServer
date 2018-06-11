@@ -38,4 +38,10 @@ public interface TaskService {
 
     // 接受任务
     public RequestResult acceptTask(int tid);
+
+    // 查询已完成任务
+    public List<MyTaskInfo> getFinishedTaskByUid(String uid);
+
+    // 查询未完成任务
+    public List<MyTaskInfo> getUnFinishedTaskByUid(String uid);
 }

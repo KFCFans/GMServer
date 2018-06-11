@@ -239,4 +239,17 @@ public class RedirectController {
         mv.setViewName("redirect:manageplant");
         return mv;
     }
+
+    // 统计功能（用户统计）
+    @RequestMapping("/userstat")
+    public ModelAndView userSearch(String uid){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("userstat");
+        if(uid==null||uid.equals("")||uid.length()==0){
+            return mv;
+        }
+        mv.addObject("flist",taskService.getFinishedTaskByUid(uid));
+        mv.addObject("ulist",taskService.getUnFinishedTaskByUid(uid));
+        return mv;
+    }
 }

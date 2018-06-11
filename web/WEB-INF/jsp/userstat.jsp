@@ -83,40 +83,80 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/gm/redirect/user" class="list-group-item active">员工管理</a>
-                <a href="/gm/redirect/userstat" class="list-group-item">员工统计</a>
+                <a href="/gm/redirect/user" class="list-group-item">员工管理</a>
+                <a href="/gm/redirect/userstat" class="list-group-item active">员工统计</a>
                 <a href="" class="list-group-item" role="button" data-toggle="modal" data-target="#addUserModal">添加员工</a>
             </div>
         </div>
 
         <div class="col-md-10">
             <div class="page-header">
-                <h4 style="size: 16px;margin-top: 0px">员工管理</h4>
+                <h4 style="size: 16px;margin-top: 0px">员工统计</h4>
             </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>姓名</th>
-                    <th>手机号</th>
-                    <th>性别</th>
-                    <th>贡献</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${requestScope.mblist }" var="mb">
-                    <tr>
-                        <td>${mb.nickname}</td>
-                        <td>${mb.uid}</td>
-                        <td>${mb.gender}</td>
-                        <td>${mb.achievement}</td>
-                        <td>
-                           <a href="/gm/redirect/delworker?uid=${mb.uid}" onclick="return confirm('确定要删除此员工吗？');"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+
+            <form action="/gm/redirect/userstat" method="post">
+                <div class="form-inline">
+                    <label for="iduid">负责人id</label>
+                    <input type="text" id="iduid" name="uid" class="form-control">
+                    <button type="submit" class="btn btn-default">查询</button>
+                </div>
+
+            </form>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>已完成</strong></div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>任务名称</th>
+                                <th>发布时间</th>
+                                <th>任务状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${requestScope.flist }" var="ftk">
+                                <tr>
+                                    <td>${ftk.tname}</td>
+                                    <td>${ftk.stime}</td>
+                                    <td>${ftk.status}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>未完成</strong></div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>任务名称</th>
+                                <th>发布时间</th>
+                                <th>任务状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${requestScope.ulist }" var="ftk">
+                                <tr>
+                                    <td>${ftk.tname}</td>
+                                    <td>${ftk.stime}</td>
+                                    <td>${ftk.status}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 
@@ -147,11 +187,11 @@
                             </select>
                         </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">提交</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
                 </form>
             </div>
         </div>

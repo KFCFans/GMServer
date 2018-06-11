@@ -130,8 +130,7 @@
 
                 <!-- 隐藏控件，用来提交图片名称-->
                 <input type="text" name="pimg" id="pimg" value="default" class="hidden">
-
-
+                
                 <button type="submit" class="btn btn-default pull-right">发布</button>
             </form>
 
